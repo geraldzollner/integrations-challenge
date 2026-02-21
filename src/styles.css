@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f8f8f8;
+  color: #111;
+}
+
+/* APP ROOT */
+body {
+  display: flex;
+  justify-content: center;
+}
+
+/* DESIGN SYSTEM */
+:root {
+  --page-width: 452px;
+  --space: 24px;
+  --radius: 18px;
+  --font-app-title: 32px;
+  --font-section-title: 24px;
+  --font-body: 16px;
+}
+
+/* PAGE */
+.page {
+  width: 100%;
+  max-width: var(--page-width);
+  padding: var(--space);
+}
+
+/* TYPOGRAPHY */
+h1 {
+  font-size: var(--font-app-title);
+  margin: 0 0 32px 0;
+}
+
+h2 {
+  font-size: var(--font-section-title);
+  margin: 0;
+}
+
+h3 {
+  font-size: var(--font-body);
+  margin: 0 0 8px 0;
+}
+
+p {
+  font-size: var(--font-body);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 12px;
+}
+
+.card-soft {
+  background: #f7f7f7;
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+/* BUTTONS */
+.button-primary {
+  width: 100%;
+  padding: 16px;
+  font-size: var(--font-body);
+  font-weight: 600;
+  border-radius: 22px;
+  border: none;
+  background: rgb(241, 78, 78);
+  color: white;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.button-primary:disabled {
+  background: #e5e5e5;
+  color: #777;
+  cursor: default;
+}
+
+/* BACK BUTTON */
+.button-back {
+  background: none;
+  border: none;
+  font-size: var(--font-body);
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+/* WEEK SPACING */
+.week {
+  margin-bottom: 32px;
+}
+
+.progress {
+  font-size: var(--font-body);
+  opacity: 0.6;
+  margin: 4px 0 12px 0;
+}
+
+/* PROGRESS BAR */
+.progress-container {
+  margin: 8px 0 20px 0;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: #888;
+}
