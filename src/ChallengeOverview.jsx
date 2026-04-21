@@ -45,22 +45,21 @@ function ChallengeOverview() {
           >
             <h2>{week.title}</h2>
 
-            {isLocked ? (
+            <div className="progress-container">
+              <div className="progress-bar-track">
+                <div
+                  className="progress-bar-fill"
+                  style={{ width: `${percent}%` }}
+                />
+              </div>
+              <span className="progress-label">
+                {done} von {total} erledigt
+              </span>
+            </div>
+            {isLocked && (
               <div className="unlock-hint">
                 🔒 Noch {remaining} Challenge{remaining !== 1 ? "s" : ""} im
                 vorherigen Thema bis zur Freischaltung
-              </div>
-            ) : (
-              <div className="progress-container">
-                <div className="progress-bar-track">
-                  <div
-                    className="progress-bar-fill"
-                    style={{ width: `${percent}%` }}
-                  />
-                </div>
-                <span className="progress-label">
-                  {done} von {total} erledigt
-                </span>
               </div>
             )}
 
