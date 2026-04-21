@@ -116,7 +116,9 @@ function ChallengeDetail() {
           <div className="committed-badge">
             <span className="committed-badge__icon">🎯</span>
             <span className="committed-badge__text">
-              Ich mache das – bis {getDeadlineLabel(commitment.timeframe)}!
+              {commitment.timeframe === "today"
+                ? "Ich mache das – heute!"
+                : `Ich mache das – bis ${getDeadlineLabel(commitment.timeframe)}!`}
             </span>
           </div>
           <button className="button-primary" onClick={handleDone}>
