@@ -114,10 +114,6 @@ p {
   margin-bottom: 32px;
 }
 
-.week-section--locked {
-  opacity: 0.4;
-}
-
 .unlock-hint {
   font-size: 13px;
   color: #888;
@@ -126,7 +122,7 @@ p {
 
 .card--locked {
   cursor: default;
-  color: #999;
+  opacity: 0.4;
 }
 
 .progress {
