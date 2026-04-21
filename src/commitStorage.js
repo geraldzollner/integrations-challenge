@@ -19,3 +19,7 @@ export function getChallengeCommitment(id) {
   const active = getActiveCommitment();
   return active?.challengeId === id ? active : null;
 }
+
+export function clearCommitment() {
+  localStorage.removeItem(STORAGE_KEY);
+}

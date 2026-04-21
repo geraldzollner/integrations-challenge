@@ -5,6 +5,7 @@ import { markChallengeDone, isChallengeDone, getDoneChallenges } from "./doneSto
 import {
   getChallengeCommitment,
   commitChallenge,
+  clearCommitment,
 } from "./commitStorage";
 
 const UNLOCK_THRESHOLD = 7;
@@ -76,7 +77,8 @@ function ChallengeDetail() {
 
   const handleDone = () => {
     markChallengeDone(challenge.id);
-    window.location.reload();
+    clearCommitment();
+    navigate("/");
   };
 
   const handleCommit = () => {
