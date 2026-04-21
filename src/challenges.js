@@ -5,60 +5,69 @@ export const challengesByWeek = [
     challenges: [
       {
         id: "w1c1",
-        title: "Gespräch mit fremder Person beginnen",
-        displayTitle: "Gespräch mit fremder Person beginnen 💬",
+        title: "Zeit für einen Kaffee? ☕",
+        displayTitle: "Zeit für einen Kaffee? ☕",
         description:
-          "Beginne ein kurzes Gespräch mit einer fremden Person, zum Beispiel in einem Café oder im Park. Wage den ersten Schritt – ein Satz genügt!",
+          "Frage eine Kollegin, einen Kollegen oder eine Nachbarin bzw. einen Nachbarn nach einem gemeinsamen Mittagessen oder Kaffee.",
         guidance:
-          "Ein kurzer, natürlicher Einstieg reicht. Stelle eine einfache Frage, kommentiere die Situation oder greife etwas Offensichtliches auf. Es geht nicht um Perfektion, sondern um den ersten Kontakt. 😊",
+          "Halte die Einladung unkompliziert, und lade nur eine Person ein. One-on-one Gespräche sind viel einfacher als Gruppengespräche. Nutze die Gelegenheit für eine entspannte Begegnung! 😊",
+      },     
+ {
+        id: "w1c2",
+        title: "Break the Ice! 🧊",
+        displayTitle: "Break the Ice! 🧊",
+        description:
+          "Beginne ein kurzes Gespräch mit einer fremden Person, zum Beispiel in einem Café oder im Park.",
+        guidance:
+          "Ein kurzer, natürlicher Einstieg reicht. Stell einfach eine Frage, kommentiere die Situation oder greife etwas Offensichtliches auf – ein Satz genügt! Es geht nicht um Perfektion, sondern um den ersten Kontakt. 😊",
       },
       {
-        id: "w1c2",
-        title: "Kulturelle Veranstaltung besuchen",
-        displayTitle: "Kulturelle Veranstaltung besuchen 🎭",
+        id: "w1c3",
+        title: "Zeit für Sport! 🏃",
+        displayTitle: "Zeit für Sport! 🏃",
         description:
-          "Besuche eine lokale kulturelle Veranstaltung und sprich anschließend mit jemandem darüber, was du erlebt hast. Trau dich – teile deine Eindrücke!",
+          "Nimm an einer lokalen Sportveranstaltung oder einer anderen Gruppenaktivität teil (Run Club, Fußball, Yoga, etc).",
+        guidance:
+          "Du musst nicht besonders gut sein. Sei einfach dabei – der Rest ergibt sich oft ganz natürlich! Nutze die Gelegenheit für kurze Gespräche vor oder nach der Aktivität. 😄",
+      },
+      {
+        id: "w1c4",
+        title: "Local Talk 🗞️",
+        displayTitle: "Local Talk 🗞️",
+        description:
+          "Teile deine Meinung zu einer lokalen Nachricht mit einer Person, die du noch nicht gut kennst.",
+        guidance:
+          " Halte das Gespräch entspannt. Stelle offene Fragen oder teile einen neutralen Gedanken. Es geht um Austausch, nicht um Überzeugung! 😊",
+      },
+      {
+        id: "w1c5",
+        title: "Hilf mit! ❤️",
+        displayTitle: "Hilf mit! 🤝",
+        description:
+          "Engagiere dich ehrenamtlich bei einer lokalen Organisation oder Veranstaltung und lerne andere Freiwillige kennen. ",
+        guidance:
+          "Wähle etwas Überschaubares. Schon kleine Beiträge oder kurze Einsätze reichen völlig. Bring dich ein – Engagement verbindet! 😊",
+      },
+      {
+        id: "w1c6",
+        title: "Lust auf Kultur? 🎭",
+        displayTitle: "Lust auf Kultur? 🎭",
+        description:
+          "Besuche eine lokale kulturelle Veranstaltung (Ausstellung, Konzert, Lesung, Museum,...) und sprich anschließend mit jemandem darüber, was du erlebt hast.",
         guidance:
           "Du musst kein Experte sein. Beschreibe einfach, was dir aufgefallen ist, oder frage andere nach ihrer Meinung. Genau daraus entwickeln sich oft die spannendsten Gespräche. 😄",
       },
       {
-        id: "w1c3",
-        title: "Hobbygruppe beitreten",
-        displayTitle: "Hobbygruppe beitreten 🎯",
+        id: "w1c7",
+        title: "Bereit für eine Gruppe? 🪴",
+        displayTitle: "Hobbygruppe beitreten 🪴",
         description:
-          "Tritt einer lokalen Hobbygruppe bei und beteilige dich aktiv an einer Aktivität. Bring dich ein – genau dort entstehen Kontakte!",
+          "Tritt einer lokalen Hobbygruppe bei (Sportverein, Keramikkurs, Kochkurs, etc) und beteilige dich aktiv an einer Aktivität. Bring dich ein – genau dort entstehen Kontakte!",
         guidance:
           "Bleib nicht nur Beobachter. Stelle Fragen, beteilige dich aktiv oder biete kleine Hilfe an. Schon kleine Gesten können einen großen Unterschied machen. 😊",
       },
       {
-        id: "w1c4",
-        title: "Gemeinsam essen oder Kaffee trinken",
-        displayTitle: "Gemeinsam essen oder Kaffee trinken ☕",
-        description:
-          "Frage eine Kollegin, einen Kollegen oder eine Nachbarin bzw. einen Nachbarn nach einem gemeinsamen Essen oder Kaffee. Nutze die Gelegenheit für eine entspannte Begegnung!",
-        guidance:
-          "Halte die Einladung unkompliziert. Ein spontaner Kaffee oder eine kurze Pause reicht völlig. Es muss nichts Besonderes sein. 😊",
-      },
-      {
-        id: "w1c5",
-        title: "An Gruppenaktivität teilnehmen",
-        displayTitle: "An Gruppenaktivität teilnehmen 🏃",
-        description:
-          "Nimm an einer lokalen Sportveranstaltung oder einer anderen Gruppenaktivität teil. Sei einfach dabei – der Rest ergibt sich oft ganz natürlich!",
-        guidance:
-          "Du musst nicht besonders gut sein. Präsenz und Teilnahme zählen. Nutze die Gelegenheit für kurze Gespräche vor oder nach der Aktivität. 😄",
-      },
-      {
-        id: "w1c6",
-        title: "Meinung zu lokalen Nachrichten teilen",
-        displayTitle: "Meinung zu lokalen Nachrichten teilen 🗞️",
-        description:
-          "Teile deine Meinung zu einer lokalen Nachricht mit einer Person, die du noch nicht gut kennst. Starte einen Austausch – aktuelle Themen verbinden!",
-        guidance:
-          "Halte das Gespräch entspannt. Stelle offene Fragen oder teile einen neutralen Gedanken. Es geht um Austausch, nicht um Überzeugung. 😊",
-      },
-      {
-        id: "w1c7",
+        id: "w1c8",
         title: "Kleines Treffen organisieren",
         displayTitle: "Kleines Treffen organisieren 🍰",
         description:
@@ -67,7 +76,7 @@ export const challengesByWeek = [
           "Halte es simpel. Ein kurzer Kaffee, ein Spaziergang oder ein kleines gemeinsames Essen reicht völlig. Perfektion ist nicht nötig. 😄",
       },
       {
-        id: "w1c8",
+        id: "w1c9",
         title: "Über aktuelles Thema sprechen",
         displayTitle: "Über aktuelles Thema sprechen 🌍",
         description:
@@ -76,22 +85,13 @@ export const challengesByWeek = [
           "Fokussiere dich auf offene Fragen. Echtes Interesse schafft eine angenehme Gesprächsdynamik. 😊",
       },
       {
-        id: "w1c9",
+        id: "w1c10",
         title: "Über Familientraditionen sprechen",
         displayTitle: "Über Familientraditionen sprechen 👨‍👩‍👧",
         description:
           "Unterhalte dich mit jemandem über Familientraditionen und Bräuche. Öffne das Gespräch für Persönliches!",
         guidance:
           "Zeige ehrliche Neugier. Menschen sprechen häufig gern über persönliche Erfahrungen. 😄",
-      },
-      {
-        id: "w1c10",
-        title: "Nach lokalem Fest fragen",
-        displayTitle: "Nach lokalem Fest fragen 🌎",
-        description:
-          "Frage eine lokale Person nach einem Fest oder Feiertag, den du noch nicht kennst. Entdecke etwas Neues – Neugier verbindet!",
-        guidance:
-          "Bitte einfach um eine kurze Erklärung oder Empfehlung. Menschen teilen ihr Wissen oft gern. 😊",
       },
     ],
   },
@@ -101,12 +101,12 @@ export const challengesByWeek = [
     challenges: [
       {
         id: "w2c1",
-        title: "Ehrenamtlich engagieren",
-        displayTitle: "Ehrenamtlich engagieren 🤝",
+        title: "Nach lokalem Fest fragen",
+        displayTitle: "Nach lokalem Fest fragen 🌎",
         description:
-          "Engagiere dich ehrenamtlich bei einer lokalen Organisation oder Veranstaltung und lerne andere Freiwillige kennen. Bring dich ein – Engagement verbindet!",
+          "Frage eine lokale Person nach einem Fest oder Feiertag, den du noch nicht kennst. Entdecke etwas Neues – Neugier verbindet!",
         guidance:
-          "Wähle etwas Überschaubares. Schon kleine Beiträge oder kurze Einsätze reichen völlig. 😊",
+          "Bitte einfach um eine kurze Erklärung oder Empfehlung. Menschen teilen ihr Wissen oft gern. 😊",
       },
       {
         id: "w2c2",
@@ -192,3 +192,7 @@ export const challengesByWeek = [
     ],
   },
 ];
+
+
+
+
