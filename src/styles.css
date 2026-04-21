@@ -127,6 +127,11 @@ p {
   user-select: none;
 }
 
+.card--committed {
+  border-left: 3px solid rgb(241, 78, 78);
+  padding-left: 17px;
+}
+
 .progress {
   font-size: var(--font-body);
   opacity: 0.6;

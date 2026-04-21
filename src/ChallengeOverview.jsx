@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { challengesByWeek } from "./challenges";
 import { getDoneChallenges } from "./doneStorage";
+import { getActiveCommitment } from "./commitStorage";
 
 const UNLOCK_THRESHOLD = 7;
 
 function ChallengeOverview() {
   const doneIds = getDoneChallenges();
+  const activeCommitment = getActiveCommitment();
 
   useEffect(() => {
     const savedY = sessionStorage.getItem("overviewScrollY");
@@ -65,6 +67,8 @@ function ChallengeOverview() {
 
             {week.challenges.map((challenge) => {
               const isDone = doneIds.includes(challenge.id);
+              const isCommitted = activeCommitment?.challengeId === challenge.id;
+
               if (isLocked) {
                 return (
                   <div key={challenge.id} className="card card--locked">
@@ -80,12 +84,15 @@ function ChallengeOverview() {
                   onClick={handleChallengeClick}
                 >
                   <div
-                    className="card"
+                    className={`card${isCommitted ? " card--committed" : ""}`}
                     style={{
                       textDecoration: isDone ? "line-through" : "none",
                       opacity: isDone ? 0.5 : 1,
                     }}
                   >
+                    {isCommitted && (
+                      <span className="committed-indicator">🎯 </span>
+                    )}
                     {challenge.title}
                   </div>
                 </Link>
