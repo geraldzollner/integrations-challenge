@@ -122,7 +122,9 @@ p {
 
 .card--locked {
   cursor: default;
-  opacity: 0.4;
+  opacity: 0.5;
+  filter: blur(3px);
+  user-select: none;
 }
 
 .progress {
