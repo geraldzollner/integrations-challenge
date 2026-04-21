@@ -81,8 +81,8 @@ p {
 /* BUTTONS */
 .button-primary {
   width: 100%;
-  padding: 16px;
-  font-size: var(--font-body);
+  padding: 11px;
+  font-size: 14px;
   font-weight: 600;
   border-radius: 22px;
   border: none;
@@ -167,56 +167,6 @@ p {
   font-size: var(--font-body);
   font-weight: 600;
   color: #333;
-}
-
-/* REMINDER ROW */
-.reminder-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: white;
-  border: 1px solid #e8e8e8;
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-top: 10px;
-}
-
-.reminder-row__label {
-  font-size: var(--font-body);
-  font-weight: 500;
-}
-
-/* TOGGLE */
-.toggle {
-  position: relative;
-  width: 44px;
-  height: 26px;
-  border-radius: 99px;
-  background: #ddd;
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.2s;
-}
-
-.toggle::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 50%;
-  top: 3px;
-  left: 3px;
-  transition: transform 0.2s;
-}
-
-.toggle--on {
-  background: #4caf50;
-}
-
-.toggle--on::after {
-  transform: translateX(18px);
 }
 
 /* TIMEFRAME PICKER */

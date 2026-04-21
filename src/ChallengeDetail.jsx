@@ -5,7 +5,6 @@ import { markChallengeDone, isChallengeDone } from "./doneStorage";
 import {
   getChallengeCommitment,
   commitChallenge,
-  updateCommitmentReminder,
 } from "./commitStorage";
 
 const TIMEFRAMES = [
@@ -55,16 +54,6 @@ function ChallengeDetail() {
     setPicking(false);
   };
 
-  const handleToggleReminder = async () => {
-    const newEnabled = !commitment.reminderEnabled;
-    if (newEnabled && "Notification" in window) {
-      const permission = await Notification.requestPermission();
-      if (permission !== "granted") return;
-    }
-    updateCommitmentReminder(challenge.id, newEnabled);
-    setCommitment({ ...commitment, reminderEnabled: newEnabled });
-  };
-
   return (
     <div className="page">
       <button className="button-back" onClick={() => navigate(-1)}>
@@ -98,14 +87,6 @@ function ChallengeDetail() {
             <span className="committed-badge__text">
               Ich mache das – bis {getDeadlineLabel(commitment.timeframe)}!
             </span>
-          </div>
-          <div className="reminder-row">
-            <span className="reminder-row__label">Erinnerung</span>
-            <button
-              className={`toggle ${commitment.reminderEnabled ? "toggle--on" : ""}`}
-              onClick={handleToggleReminder}
-              aria-label="Erinnerung ein/aus"
-            />
           </div>
           <button className="button-primary" onClick={handleDone}>
             Als erledigt markieren

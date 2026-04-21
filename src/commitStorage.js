@@ -13,17 +13,8 @@ export function commitChallenge(id, timeframe) {
   committed[id] = {
     timeframe,
     committedAt: Date.now(),
-    reminderEnabled: false,
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(committed));
-}
-
-export function updateCommitmentReminder(id, enabled) {
-  const committed = getCommittedChallenges();
-  if (committed[id]) {
-    committed[id].reminderEnabled = enabled;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(committed));
-  }
 }
 
 export function getChallengeCommitment(id) {
