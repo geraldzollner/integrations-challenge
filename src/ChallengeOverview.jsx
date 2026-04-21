@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { challengesByWeek } from "./challenges";
 import { getDoneChallenges } from "./doneStorage";
 
+const UNLOCK_THRESHOLD = 7;
+
 function ChallengeOverview() {
   const doneIds = getDoneChallenges();
 
@@ -21,29 +23,56 @@ function ChallengeOverview() {
   return (
     <div className="page">
       <h1>Integrations-Challenge</h1>
-      {challengesByWeek.map((week) => {
+      {challengesByWeek.map((week, index) => {
         const total = week.challenges.length;
         const done = week.challenges.filter((c) =>
           doneIds.includes(c.id)
         ).length;
         const percent = Math.round((done / total) * 100);
 
+        // Check if this theme is locked based on previous theme's completion
+        const previousWeek = index > 0 ? challengesByWeek[index - 1] : null;
+        const previousDone = previousWeek
+          ? previousWeek.challenges.filter((c) => doneIds.includes(c.id)).length
+          : UNLOCK_THRESHOLD;
+        const isLocked = previousDone < UNLOCK_THRESHOLD;
+        const remaining = UNLOCK_THRESHOLD - previousDone;
+
         return (
-          <section key={week.week} className="week-section">
+          <section
+            key={week.week}
+            className={`week-section${isLocked ? " week-section--locked" : ""}`}
+          >
             <h2>{week.title}</h2>
-            <div className="progress-container">
-              <div className="progress-bar-track">
-                <div
-                  className="progress-bar-fill"
-                  style={{ width: `${percent}%` }}
-                />
+
+            {isLocked ? (
+              <div className="unlock-hint">
+                🔒 Noch {remaining} Challenge{remaining !== 1 ? "s" : ""} im
+                vorherigen Thema bis zur Freischaltung
               </div>
-              <span className="progress-label">
-                {done} von {total} erledigt
-              </span>
-            </div>
+            ) : (
+              <div className="progress-container">
+                <div className="progress-bar-track">
+                  <div
+                    className="progress-bar-fill"
+                    style={{ width: `${percent}%` }}
+                  />
+                </div>
+                <span className="progress-label">
+                  {done} von {total} erledigt
+                </span>
+              </div>
+            )}
+
             {week.challenges.map((challenge) => {
-              const done = doneIds.includes(challenge.id);
+              const isDone = doneIds.includes(challenge.id);
+              if (isLocked) {
+                return (
+                  <div key={challenge.id} className="card card--locked">
+                    {challenge.title}
+                  </div>
+                );
+              }
               return (
                 <Link
                   key={challenge.id}
@@ -54,8 +83,8 @@ function ChallengeOverview() {
                   <div
                     className="card"
                     style={{
-                      textDecoration: done ? "line-through" : "none",
-                      opacity: done ? 0.5 : 1,
+                      textDecoration: isDone ? "line-through" : "none",
+                      opacity: isDone ? 0.5 : 1,
                     }}
                   >
                     {challenge.title}

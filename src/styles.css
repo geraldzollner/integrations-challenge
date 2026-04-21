@@ -109,9 +109,24 @@ p {
   margin-bottom: 16px;
 }
 
-/* WEEK SPACING */
-.week {
+/* THEME SPACING */
+.week-section {
   margin-bottom: 32px;
+}
+
+.week-section--locked {
+  opacity: 0.4;
+}
+
+.unlock-hint {
+  font-size: 13px;
+  color: #888;
+  margin: 4px 0 16px 0;
+}
+
+.card--locked {
+  cursor: default;
+  color: #999;
 }
 
 .progress {

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { challengesByWeek } from "./challenges";
-import { markChallengeDone, isChallengeDone } from "./doneStorage";
+import { markChallengeDone, isChallengeDone, getDoneChallenges } from "./doneStorage";
 import {
   getChallengeCommitment,
   commitChallenge,
 } from "./commitStorage";
+
+const UNLOCK_THRESHOLD = 7;
 
 const TIMEFRAMES = [
   { key: "today", label: "Heute", days: 0 },
@@ -39,6 +41,35 @@ function ChallengeDetail() {
         <p>Challenge nicht gefunden.</p>
       </div>
     );
+  }
+
+  // Guard: check if this challenge's theme is locked
+  const themeIndex = challengesByWeek.findIndex((w) =>
+    w.challenges.some((c) => c.id === id)
+  );
+  if (themeIndex > 0) {
+    const previousTheme = challengesByWeek[themeIndex - 1];
+    const doneIds = getDoneChallenges();
+    const previousDone = previousTheme.challenges.filter((c) =>
+      doneIds.includes(c.id)
+    ).length;
+    if (previousDone < UNLOCK_THRESHOLD) {
+      return (
+        <div className="page">
+          <button className="button-back" onClick={() => navigate(-1)}>
+            ← Zurück
+          </button>
+          <div className="card-soft" style={{ textAlign: "center", padding: "32px 20px" }}>
+            <div style={{ fontSize: "32px", marginBottom: "12px" }}>🔒</div>
+            <p style={{ fontWeight: 600, marginBottom: "8px" }}>Noch nicht freigeschaltet</p>
+            <p style={{ color: "#888" }}>
+              Erledige {UNLOCK_THRESHOLD} Challenges aus „
+              {previousTheme.title}" um dieses Thema freizuschalten.
+            </p>
+          </div>
+        </div>
+      );
+    }
   }
 
   const done = isChallengeDone(challenge.id);
