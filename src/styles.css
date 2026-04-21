@@ -132,6 +132,28 @@ p {
   border-color: #f8c8c8;
 }
 
+.card--overdue {
+  background: rgb(241, 78, 78);
+  border-color: rgb(210, 50, 50);
+  color: white;
+}
+
+.overdue-label {
+  opacity: 0.8;
+  font-size: 13px;
+}
+
+.committed-badge--overdue {
+  background: #fff0f0;
+  border-color: rgb(241, 78, 78);
+}
+
+.button-primary--ghost {
+  background: white;
+  color: rgb(241, 78, 78);
+  border: 1.5px solid rgb(241, 78, 78);
+}
+
 .progress {
   font-size: var(--font-body);
   opacity: 0.6;

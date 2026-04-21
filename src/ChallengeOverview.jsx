@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { challengesByWeek } from "./challenges";
 import { getDoneChallenges } from "./doneStorage";
-import { getActiveCommitment } from "./commitStorage";
+import { getActiveCommitment, isCommitmentOverdue } from "./commitStorage";
 
 const UNLOCK_THRESHOLD = 7;
 
@@ -68,6 +68,7 @@ function ChallengeOverview() {
             {week.challenges.map((challenge) => {
               const isDone = doneIds.includes(challenge.id);
               const isCommitted = activeCommitment?.challengeId === challenge.id;
+              const isOverdue = isCommitted && isCommitmentOverdue(activeCommitment);
 
               if (isLocked) {
                 return (
@@ -84,16 +85,22 @@ function ChallengeOverview() {
                   onClick={handleChallengeClick}
                 >
                   <div
-                    className={`card${isCommitted ? " card--committed" : ""}`}
+                    className={`card${isCommitted && !isOverdue ? " card--committed" : ""}${isOverdue ? " card--overdue" : ""}`}
                     style={{
                       textDecoration: isDone ? "line-through" : "none",
                       opacity: isDone ? 0.5 : 1,
                     }}
                   >
-                    {isCommitted && (
-                      <span className="committed-indicator">🎯 </span>
+                    {isCommitted && !isOverdue && (
+                      <span>🎯 </span>
+                    )}
+                    {isOverdue && (
+                      <span>⚠️ </span>
                     )}
                     {challenge.title}
+                    {isOverdue && (
+                      <span className="overdue-label"> · Abgelaufen</span>
+                    )}
                   </div>
                 </Link>
               );

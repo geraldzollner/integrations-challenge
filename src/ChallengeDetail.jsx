@@ -6,6 +6,7 @@ import {
   getChallengeCommitment,
   commitChallenge,
   clearCommitment,
+  isCommitmentOverdue,
 } from "./commitStorage";
 
 const UNLOCK_THRESHOLD = 7;
@@ -74,6 +75,7 @@ function ChallengeDetail() {
   }
 
   const done = isChallengeDone(challenge.id);
+  const overdue = isCommitmentOverdue(commitment);
 
   const handleDone = () => {
     markChallengeDone(challenge.id);
@@ -112,8 +114,29 @@ function ChallengeDetail() {
         </button>
       )}
 
-      {/* COMMITTED */}
-      {!done && commitment && (
+      {/* COMMITTED – overdue */}
+      {!done && commitment && overdue && (
+        <>
+          <div className="committed-badge committed-badge--overdue">
+            <span className="committed-badge__icon">⚠️</span>
+            <span className="committed-badge__text">
+              Frist abgelaufen – trotzdem erledigt?
+            </span>
+          </div>
+          <button className="button-primary" onClick={handleDone}>
+            Als erledigt markieren
+          </button>
+          <button
+            className="button-primary button-primary--ghost"
+            onClick={() => { clearCommitment(); setPicking(true); }}
+          >
+            Neu committen
+          </button>
+        </>
+      )}
+
+      {/* COMMITTED – on track */}
+      {!done && commitment && !overdue && (
         <>
           <div className="committed-badge">
             <span className="committed-badge__icon">🎯</span>
