@@ -9,6 +9,7 @@ import {
   clearCommitment,
   isCommitmentOverdue,
 } from "./commitStorage";
+import { addHabit, isHabit } from "./habitStorage";
 
 const UNLOCK_THRESHOLD = 7;
 
@@ -34,6 +35,7 @@ function ChallengeDetail() {
 
   const [picking, setPicking] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [showHabitPrompt, setShowHabitPrompt] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState("3days");
   const [commitment, setCommitment] = useState(() =>
     challenge ? getChallengeCommitment(challenge.id) : null
@@ -47,7 +49,6 @@ function ChallengeDetail() {
     );
   }
 
-  // Guard: check if this challenge's theme is locked
   const themeIndex = challengesByWeek.findIndex((w) =>
     w.challenges.some((c) => c.id === id)
   );
@@ -78,6 +79,7 @@ function ChallengeDetail() {
 
   const done = isChallengeDone(challenge.id);
   const overdue = isCommitmentOverdue(commitment);
+  const alreadyHabit = isHabit(challenge.id);
 
   const handleDone = () => {
     markChallengeDone(challenge.id);
@@ -89,7 +91,23 @@ function ChallengeDetail() {
       colors: ["#f14e4e", "#4caf50", "#ffd700", "#42a5f5", "#ff9800"],
     });
     setShowToast(true);
-    setTimeout(() => navigate("/"), 2500);
+    setTimeout(() => {
+      setShowToast(false);
+      if (!alreadyHabit) {
+        setShowHabitPrompt(true);
+      } else {
+        navigate("/");
+      }
+    }, 2500);
+  };
+
+  const handleHabitYes = () => {
+    addHabit(challenge);
+    navigate("/habits");
+  };
+
+  const handleHabitNo = () => {
+    navigate("/");
   };
 
   const handleCommit = () => {
@@ -97,6 +115,31 @@ function ChallengeDetail() {
     setCommitment(getChallengeCommitment(challenge.id));
     setPicking(false);
   };
+
+  if (showHabitPrompt) {
+    return (
+      <div className="page">
+        <div className="habit-prompt">
+          <div className="habit-prompt__emoji">🔄</div>
+          <h2 className="habit-prompt__title">Zur Gewohnheit machen?</h2>
+          <p className="habit-prompt__body">
+            Möchtest du <strong>„{challenge.title}"</strong> regelmäßig wiederholen
+            und als Gewohnheit tracken?
+          </p>
+          <button className="button-primary" onClick={handleHabitYes}>
+            Ja, zur Gewohnheit machen!
+          </button>
+          <button
+            className="button-primary button-primary--ghost"
+            onClick={handleHabitNo}
+            style={{ marginTop: "10px" }}
+          >
+            Nein danke
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page">
@@ -211,6 +254,7 @@ function ChallengeDetail() {
           )}
         </>
       )}
+
       {showToast && (
         <div className="success-toast">🎉 Super! Weiter so!</div>
       )}

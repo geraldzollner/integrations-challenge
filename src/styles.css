@@ -308,3 +308,148 @@ p {
   75%  { opacity: 1; transform: translateX(-50%) translateY(-50%); }
   100% { opacity: 0; transform: translateX(-50%) translateY(-62px); }
 }
+
+/* TAB BAR */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background: white;
+  border-top: 1px solid #e8e8e8;
+  z-index: 100;
+}
+
+.tab-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 40px 14px;
+  text-decoration: none;
+  color: #aaa;
+  font-size: 11px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.tab-bar__item--active {
+  color: rgb(241, 78, 78);
+}
+
+.tab-bar__icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* Ensure page content doesn't hide behind tab bar */
+.page {
+  padding-bottom: 80px;
+}
+
+/* HABIT PROMPT */
+.habit-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px 24px;
+}
+
+.habit-prompt__emoji {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.habit-prompt__title {
+  font-size: var(--font-section-title);
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.habit-prompt__body {
+  font-size: var(--font-body);
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+/* HABIT CARD */
+.habit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.habit-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.habit-card__title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.habit-card__remove {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #bbb;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.habit-card__remove:hover {
+  color: #888;
+}
+
+.habit-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.habit-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e8e8e8;
+  flex: 1;
+}
+
+.habit-dot--done {
+  background: #4caf50;
+}
+
+.habit-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.habit-streak {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f57c00;
+}
+
+.habit-checkin {
+  margin-top: 0;
+}
+
+.habit-checkin--done {
+  background: #4caf50;
+  opacity: 1;
+}
+
+.habit-checkin--done:disabled {
+  background: #4caf50;
+  opacity: 0.8;
+}
