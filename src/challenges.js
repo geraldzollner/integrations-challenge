@@ -8,45 +8,45 @@ export const challengesByWeek = [
         title: "Lächle und sag Hallo ☀️",
         displayTitle: "Lächle und sag Hallo ☀️",
         description:
-          "Grüße heute drei fremde Personen mit einem Lächeln und einem einfachen „Hallo" — beim Einkaufen, im Treppenhaus oder auf der Straße.",
+          "Grüße heute drei fremde Personen mit einem Lächeln und einem einfachen «Hallo» - beim Einkaufen, im Treppenhaus oder auf der Straße.",
         guidance:
-          "Du musst nichts sagen außer „Hallo". Ein Lächeln reicht oft schon. Kleine Gesten haben überraschend große Wirkung.",
+          "Du musst nichts sagen außer «Hallo». Ein Lächeln reicht oft schon. Kleine Gesten haben überraschend große Wirkung.",
       },
       {
         id: "t1c2",
         title: "Break the Ice! 🧊",
         displayTitle: "Break the Ice! 🧊",
         description:
-          "Beginne ein kurzes Gespräch mit einer dir unbekannten Person — z.B. in einem Café, im Park oder an der Bushaltestelle.",
+          "Beginne ein kurzes Gespräch mit einer dir unbekannten Person - z.B. in einem Café, im Park oder an der Bushaltestelle.",
         guidance:
-          "Ein Satz reicht. Kommentiere die Situation, das Wetter oder etwas Offensichtliches. Perfektion ist nicht das Ziel — der erste Kontakt ist es.",
+          "Ein Satz reicht. Kommentiere die Situation, das Wetter oder etwas Offensichtliches. Perfektion ist nicht das Ziel - der erste Kontakt ist es.",
       },
       {
         id: "t1c3",
         title: "Frag nach einer Empfehlung 🗺️",
         displayTitle: "Frag nach einer Empfehlung 🗺️",
         description:
-          "Bitte jemanden um eine lokale Empfehlung: ein Restaurant, ein Café, ein Ausflugsziel — auch wenn du die Antwort vielleicht gar nicht brauchst.",
+          "Bitte jemanden um eine lokale Empfehlung: ein Restaurant, ein Café, ein Ausflugsziel - auch wenn du die Antwort vielleicht gar nicht brauchst.",
         guidance:
-          "Menschen helfen gerne. Eine konkrete Frage macht den Einstieg leicht — und oft ergibt sich daraus ein richtiges Gespräch.",
+          "Menschen helfen gerne. Eine konkrete Frage macht den Einstieg leicht - und oft ergibt sich daraus ein richtiges Gespräch.",
       },
       {
         id: "t1c4",
         title: "Mach ein Kompliment 💬",
         displayTitle: "Mach ein Kompliment 💬",
         description:
-          "Mach heute jemandem ein ehrliches, konkretes Kompliment — einer Kollegin, einem Nachbarn oder einer Person, der du begegnest.",
+          "Mach heute jemandem ein ehrliches, konkretes Kompliment - einer Kollegin, einem Nachbarn oder einer Person, der du begegnest.",
         guidance:
-          "Konkret ist besser als allgemein. „Ich mag, wie du das erklärt hast" wirkt stärker als „Du bist nett". Und: Nimm auch Komplimente bewusst an.",
+          "Konkret ist besser als allgemein. «Ich mag, wie du das erklärt hast» wirkt stärker als «Du bist nett». Und: Nimm auch Komplimente bewusst an.",
       },
       {
         id: "t1c5",
         title: "Zeit für einen Kaffee? ☕",
         displayTitle: "Zeit für einen Kaffee? ☕",
         description:
-          "Lade eine Kollegin, einen Kollegen oder eine Nachbarin zu einem Kaffee oder Mittagessen ein — nur ihr zwei.",
+          "Lade eine Kollegin, einen Kollegen oder eine Nachbarin zu einem Kaffee oder Mittagessen ein - nur ihr zwei.",
         guidance:
-          "Halte die Einladung unkompliziert. One-on-one ist viel einfacher als Gruppen. Schreib einfach kurz an — die meisten freuen sich.",
+          "Halte die Einladung unkompliziert. One-on-one ist viel einfacher als Gruppen. Schreib einfach kurz an - die meisten freuen sich.",
       },
       {
         id: "t1c6",
@@ -55,7 +55,7 @@ export const challengesByWeek = [
         description:
           "Sprich mit jemandem, den du noch nicht gut kennst, über ein lokales Thema: ein Stadtfest, eine Baustelle, ein neues Lokal.",
         guidance:
-          "Alltagsthemen sind der einfachste Gesprächseinstieg. Du musst keine starke Meinung haben — Neugier reicht völlig.",
+          "Alltagsthemen sind der einfachste Gesprächseinstieg. Du musst keine starke Meinung haben - Neugier reicht völlig.",
       },
       {
         id: "t1c7",
@@ -64,16 +64,16 @@ export const challengesByWeek = [
         description:
           "Frage eine lokale Person nach einem Feiertag oder Fest, das du noch nicht kennst. Lass dir erzählen, wie es gefeiert wird.",
         guidance:
-          "Echte Neugier öffnet Türen. Menschen teilen ihre Traditionen gerne — du musst nur fragen.",
+          "Echte Neugier öffnet Türen. Menschen teilen ihre Traditionen gerne - du musst nur fragen.",
       },
       {
         id: "t1c8",
         title: "Über Familientraditionen sprechen 👨‍👩‍👧",
         displayTitle: "Über Familientraditionen sprechen 👨‍👩‍👧",
         description:
-          "Erzähl jemandem von einer Tradition aus deiner Familie oder Herkunft — und frag nach ihrer.",
+          "Erzähl jemandem von einer Tradition aus deiner Familie oder Herkunft - und frag nach ihrer.",
         guidance:
-          "Persönliche Geschichten schaffen Nähe. Du musst nichts Großes teilen — eine kleine Tradition oder ein Ritual reicht.",
+          "Persönliche Geschichten schaffen Nähe. Du musst nichts Großes teilen - eine kleine Tradition oder ein Ritual reicht.",
       },
       {
         id: "t1c9",
@@ -82,14 +82,14 @@ export const challengesByWeek = [
         description:
           "Besuche eine lokale Veranstaltung (Konzert, Ausstellung, Lesung) und sprich danach mit jemandem darüber, was du erlebt hast.",
         guidance:
-          "Du musst kein Experte sein. „Was hat dir am besten gefallen?" ist ein einfacher, offener Einstieg.",
+          "Du musst kein Experte sein. «Was hat dir am besten gefallen?» ist ein einfacher, offener Einstieg.",
       },
       {
         id: "t1c10",
         title: "Über deinen Wohnort sprechen 🏙️",
         displayTitle: "Über deinen Wohnort sprechen 🏙️",
         description:
-          "Erzähl jemandem, was dir an deinem Wohnort gefällt — und was dir noch fehlt oder fremd ist.",
+          "Erzähl jemandem, was dir an deinem Wohnort gefällt - und was dir noch fehlt oder fremd ist.",
         guidance:
           "Ehrlichkeit wirkt verbindend. Du musst nicht nur Positives sagen. Geteilte Alltagserfahrungen schaffen schnell Gemeinsamkeiten.",
       },
@@ -104,18 +104,18 @@ export const challengesByWeek = [
         title: "Zeit für Sport! 🏃",
         displayTitle: "Zeit für Sport! 🏃",
         description:
-          "Nimm an einer lokalen Gruppenaktivität teil: Run Club, Yoga, Fußball, Schwimmkurs — irgendetwas, das regelmäßig stattfindet.",
+          "Nimm an einer lokalen Gruppenaktivität teil: Run Club, Yoga, Fußball, Schwimmkurs - irgendetwas, das regelmäßig stattfindet.",
         guidance:
-          "Das Ziel ist nicht Sport — es ist Wiederholung. Wer regelmäßig auftaucht, wird schnell bekannt.",
+          "Das Ziel ist nicht Sport - es ist Wiederholung. Wer regelmäßig auftaucht, wird schnell bekannt.",
       },
       {
         id: "t2c2",
         title: "Hobbygruppe beitreten 🪴",
         displayTitle: "Hobbygruppe beitreten 🪴",
         description:
-          "Tritt einer lokalen Hobbygruppe bei und beteilige dich aktiv — nicht nur zuschauen.",
+          "Tritt einer lokalen Hobbygruppe bei und beteilige dich aktiv - nicht nur zuschauen.",
         guidance:
-          "Stelle Fragen, biete kleine Hilfe an. Engagement fällt auf — positiv.",
+          "Stelle Fragen, biete kleine Hilfe an. Engagement fällt auf - positiv.",
       },
       {
         id: "t2c3",
@@ -124,7 +124,7 @@ export const challengesByWeek = [
         description:
           "Geh an einen Ort zurück, an dem du letzte Woche eine positive Begegnung hattest. Zeig einfach wieder auf.",
         guidance:
-          "Vertrautheit entsteht durch Wiederholung, nicht durch perfekte Gespräche. Dein Gesicht wird bekannt — das reicht als erster Schritt.",
+          "Vertrautheit entsteht durch Wiederholung, nicht durch perfekte Gespräche. Dein Gesicht wird bekannt - das reicht als erster Schritt.",
       },
       {
         id: "t2c4",
@@ -140,9 +140,9 @@ export const challengesByWeek = [
         title: "Kontakt tauschen 📲",
         displayTitle: "Kontakt tauschen 📲",
         description:
-          "Tausche mit jemandem, den du in den letzten Wochen kennengelernt hast, Kontaktdaten aus — und schreib ihm oder ihr danach kurz.",
+          "Tausche mit jemandem, den du in den letzten Wochen kennengelernt hast, Kontaktdaten aus - und schreib ihm oder ihr danach kurz.",
         guidance:
-          "„Hat mich gefreut, dich kennenzulernen" reicht völlig. Der erste Follow-up ist oft der schwerste — und der wichtigste.",
+          "«Hat mich gefreut, dich kennenzulernen» reicht völlig. Der erste Follow-up ist oft der schwerste - und der wichtigste.",
       },
       {
         id: "t2c6",
@@ -151,16 +151,16 @@ export const challengesByWeek = [
         description:
           "Frag jemanden, wie er oder sie hier aufgewachsen ist. Was war anders? Was hat sich verändert?",
         guidance:
-          "Das ist tieferes Terrain — und genau richtig für Thema 2. Persönliche Geschichten entstehen, wenn man nachfragt.",
+          "Das ist tieferes Terrain - und genau richtig für Thema 2. Persönliche Geschichten entstehen, wenn man nachfragt.",
       },
       {
         id: "t2c7",
         title: "Über ein aktuelles Thema sprechen 🌍",
         displayTitle: "Über ein aktuelles Thema sprechen 🌍",
         description:
-          "Sprich mit jemandem über ein aktuelles Ereignis und frage nach ihrer persönlichen Sichtweise — nicht nur Fakten, sondern Meinungen.",
+          "Sprich mit jemandem über ein aktuelles Ereignis und frage nach ihrer persönlichen Sichtweise - nicht nur Fakten, sondern Meinungen.",
         guidance:
-          "„Was denkst du darüber?" ist eine der stärksten Fragen. Sie zeigt, dass du die Person — nicht nur das Thema — interessiert.",
+          "«Was denkst du darüber?» ist eine der stärksten Fragen. Sie zeigt, dass du die Person - nicht nur das Thema - interessiert.",
       },
       {
         id: "t2c8",
@@ -169,7 +169,7 @@ export const challengesByWeek = [
         description:
           "Verabrede dich konkret für ein nächstes Treffen oder eine gemeinsame Aktivität mit jemandem, den du schon kennst.",
         guidance:
-          "Vage Pläne versanden. Setzt ein Datum, einen Ort — auch wenn es nur ein Kaffee in zwei Wochen ist.",
+          "Vage Pläne versanden. Setzt ein Datum, einen Ort - auch wenn es nur ein Kaffee in zwei Wochen ist.",
       },
       {
         id: "t2c9",
@@ -178,14 +178,14 @@ export const challengesByWeek = [
         description:
           "Lade jemanden zu einer lokalen Veranstaltung ein, die du sowieso besuchst.",
         guidance:
-          "„Ich gehe am Samstag zum Markt — magst du mitkommen?" reicht völlig. Spontan wirkt oft natürlicher als formell geplant.",
+          "«Ich gehe am Samstag zum Markt - magst du mitkommen?» reicht völlig. Spontan wirkt oft natürlicher als formell geplant.",
       },
       {
         id: "t2c10",
         title: "Meinung zu Veränderungen einholen 🔄",
         displayTitle: "Meinung zu Veränderungen einholen 🔄",
         description:
-          "Frag jemanden, wie sich die Stadt oder das Viertel in den letzten Jahren verändert hat — und was sie davon halten.",
+          "Frag jemanden, wie sich die Stadt oder das Viertel in den letzten Jahren verändert hat - und was sie davon halten.",
         guidance:
           "Diese Frage lädt zu echten, langen Gesprächen ein. Menschen mit lokaler Geschichte haben fast immer viel zu erzählen.",
       },
@@ -202,7 +202,7 @@ export const challengesByWeek = [
         description:
           "Engagiere dich ehrenamtlich bei einer lokalen Organisation, einem Event oder einer Initiative.",
         guidance:
-          "Schon ein einmaliger Einsatz zählt. Wer sich einbringt, wird gesehen — und lernt die Menschen kennen, die wirklich etwas bewegen.",
+          "Schon ein einmaliger Einsatz zählt. Wer sich einbringt, wird gesehen - und lernt die Menschen kennen, die wirklich etwas bewegen.",
       },
       {
         id: "t3c2",
@@ -227,7 +227,7 @@ export const challengesByWeek = [
         title: "Kleines Treffen organisieren 🍰",
         displayTitle: "Kleines Treffen organisieren 🍰",
         description:
-          "Organisiere ein kleines Treffen: Nachbarn, Kollegen, Bekannte. Du bist der Gastgeber — auch wenn es nur ein Kaffee ist.",
+          "Organisiere ein kleines Treffen: Nachbarn, Kollegen, Bekannte. Du bist der Gastgeber - auch wenn es nur ein Kaffee ist.",
         guidance:
           "Perfektion ist nicht nötig. Eine Nachricht und ein Datum reichen. Was zählt, ist der Impuls.",
       },
@@ -236,9 +236,9 @@ export const challengesByWeek = [
         title: "Zwei Menschen vorstellen 🤝",
         displayTitle: "Zwei Menschen vorstellen 🤝",
         description:
-          "Stelle zwei Personen aus verschiedenen Teilen deines Lebens einander vor — weil du denkst, sie könnten sich mögen oder voneinander profitieren.",
+          "Stelle zwei Personen aus verschiedenen Teilen deines Lebens einander vor - weil du denkst, sie könnten sich mögen oder voneinander profitieren.",
         guidance:
-          "„Ich kenne jemanden, den du kennen solltest" ist ein starkes Zeichen: Es zeigt, dass du an andere denkst.",
+          "«Ich kenne jemanden, den du kennen solltest» ist ein starkes Zeichen: Es zeigt, dass du an andere denkst.",
       },
       {
         id: "t3c6",
@@ -296,18 +296,18 @@ export const challengesByWeek = [
         title: "Jemanden zu dir einladen 🏠",
         displayTitle: "Jemanden zu dir einladen 🏠",
         description:
-          "Lade jemanden zu dir nach Hause ein — zum Essen, Tee oder einfach so.",
+          "Lade jemanden zu dir nach Hause ein - zum Essen, Tee oder einfach so.",
         guidance:
-          "Das eigene Zuhause zu öffnen ist ein starkes Signal. Es muss nicht perfekt sein — es muss nur echt sein.",
+          "Das eigene Zuhause zu öffnen ist ein starkes Signal. Es muss nicht perfekt sein - es muss nur echt sein.",
       },
       {
         id: "t4c2",
         title: "Eine persönliche Geschichte teilen 💭",
         displayTitle: "Eine persönliche Geschichte teilen 💭",
         description:
-          "Erzähl jemandem etwas Persönliches über deinen Weg hierher — warum du gekommen bist, was du dir erhofft hast, was schwer war.",
+          "Erzähl jemandem etwas Persönliches über deinen Weg hierher - warum du gekommen bist, was du dir erhofft hast, was schwer war.",
         guidance:
-          "Verletzlichkeit schafft Verbindung. Du musst nicht alles teilen — aber ein ehrlicher Moment reicht, um Nähe entstehen zu lassen.",
+          "Verletzlichkeit schafft Verbindung. Du musst nicht alles teilen - aber ein ehrlicher Moment reicht, um Nähe entstehen zu lassen.",
       },
       {
         id: "t4c3",
@@ -316,7 +316,7 @@ export const challengesByWeek = [
         description:
           "Bitte jemanden, dem du vertraust, um einen ehrlichen Rat zu etwas, das dich wirklich beschäftigt.",
         guidance:
-          "Um Rat zu bitten ist kein Zeichen von Schwäche — es ist ein Zeichen von Vertrauen. Menschen fühlen sich geehrt, wenn sie wirklich gebraucht werden.",
+          "Um Rat zu bitten ist kein Zeichen von Schwäche - es ist ein Zeichen von Vertrauen. Menschen fühlen sich geehrt, wenn sie wirklich gebraucht werden.",
       },
       {
         id: "t4c4",
@@ -325,23 +325,23 @@ export const challengesByWeek = [
         description:
           "Geh dreimal in Folge an denselben Ort: dasselbe Café, denselben Markt, dieselbe Gruppe. Werde bekannt.",
         guidance:
-          "Zugehörigkeit entsteht durch Wiederholung. Wenn dich jemand mit Namen kennt oder deinen Kaffee schon kennt — dann bist du angekommen.",
+          "Zugehörigkeit entsteht durch Wiederholung. Wenn dich jemand mit Namen kennt oder deinen Kaffee schon kennt - dann bist du angekommen.",
       },
       {
         id: "t4c5",
         title: "Jemandem wirklich danken 🙏",
         displayTitle: "Jemandem wirklich danken 🙏",
         description:
-          "Bedanke dich bei jemandem ehrlich und konkret für etwas, das er oder sie für dich getan hat — auch wenn es schon länger her ist.",
+          "Bedanke dich bei jemandem ehrlich und konkret für etwas, das er oder sie für dich getan hat - auch wenn es schon länger her ist.",
         guidance:
-          "Ein echter Dank bleibt. Er sagt: Ich habe gesehen, was du getan hast — und es hat mich berührt.",
+          "Ein echter Dank bleibt. Er sagt: Ich habe gesehen, was du getan hast - und es hat mich berührt.",
       },
       {
         id: "t4c6",
         title: "Über Heimat sprechen 🌍",
         displayTitle: "Über Heimat sprechen 🌍",
         description:
-          "Sprich mit jemandem über das, was Heimat für dich bedeutet — und was es für sie bedeutet.",
+          "Sprich mit jemandem über das, was Heimat für dich bedeutet - und was es für sie bedeutet.",
         guidance:
           "Das ist eines der tiefsten Themen überhaupt. Es verbindet Menschen über alle Unterschiede hinweg.",
       },
@@ -350,9 +350,9 @@ export const challengesByWeek = [
         title: "Für jemanden da sein ❤️",
         displayTitle: "Für jemanden da sein ❤️",
         description:
-          "Unterstütze jemanden in deinem Umfeld in einem schwierigen Moment — sei es durch ein Gespräch, praktische Hilfe oder einfach deine Anwesenheit.",
+          "Unterstütze jemanden in deinem Umfeld in einem schwierigen Moment - sei es durch ein Gespräch, praktische Hilfe oder einfach deine Anwesenheit.",
         guidance:
-          "„Wie geht es dir wirklich?" fragen und wirklich zuhören — das ist mehr wert als jede große Geste.",
+          "«Wie geht es dir wirklich?» fragen und wirklich zuhören - das ist mehr wert als jede große Geste.",
       },
       {
         id: "t4c8",
@@ -368,18 +368,18 @@ export const challengesByWeek = [
         title: "Dein Netzwerk feiern 🥂",
         displayTitle: "Dein Netzwerk feiern 🥂",
         description:
-          "Schau zurück auf die letzten Wochen. Wen hast du kennengelernt? Was hat sich verändert? Feiere das — mit einem kleinen Treffen deiner neuen Kontakte.",
+          "Schau zurück auf die letzten Wochen. Wen hast du kennengelernt? Was hat sich verändert? Feiere das - mit einem kleinen Treffen deiner neuen Kontakte.",
         guidance:
-          "Das ist kein Abschluss — es ist ein Anfang. Wer seine Verbindungen pflegt und sichtbar macht, hält sie lebendig.",
+          "Das ist kein Abschluss - es ist ein Anfang. Wer seine Verbindungen pflegt und sichtbar macht, hält sie lebendig.",
       },
       {
         id: "t4c10",
         title: "Bleib dran 🔁",
         displayTitle: "Bleib dran 🔁",
         description:
-          "Melde dich bei jemandem, mit dem du länger nicht gesprochen hast — ohne besonderen Anlass, einfach so.",
+          "Melde dich bei jemandem, mit dem du länger nicht gesprochen hast - ohne besonderen Anlass, einfach so.",
         guidance:
-          "Beziehungen brauchen keine großen Momente. Eine kurze Nachricht, die sagt „Ich denke an dich" — das ist Zugehörigkeit.",
+          "Beziehungen brauchen keine großen Momente. Eine kurze Nachricht, die sagt «Ich denke an dich» - das ist Zugehörigkeit.",
       },
     ],
   },
