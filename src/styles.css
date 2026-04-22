@@ -453,3 +453,22 @@ p {
   background: #4caf50;
   opacity: 0.8;
 }
+
+/* MODAL PAGINATION DOTS */
+.modal-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0e0e0;
+}
+
+.modal-dot--active {
+  background: rgb(241, 78, 78);
+}
