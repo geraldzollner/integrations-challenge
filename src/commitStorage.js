@@ -1,7 +1,5 @@
 const STORAGE_KEY = "activeCommitment";
 
-const TIMEFRAME_DAYS = { today: 1, "3days": 3, week: 7 };
-
 export function getActiveCommitment() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null;
@@ -12,9 +10,19 @@ export function getActiveCommitment() {
 
 export function isCommitmentOverdue(commitment) {
   if (!commitment) return false;
-  const days = TIMEFRAME_DAYS[commitment.timeframe] ?? 1;
-  const deadline = commitment.committedAt + days * 24 * 60 * 60 * 1000;
-  return Date.now() > deadline;
+  const committed = new Date(commitment.committedAt);
+  const deadline = new Date(committed);
+
+  if (commitment.timeframe === "today") {
+    // expires at midnight of the day it was committed
+    deadline.setHours(23, 59, 59, 999);
+  } else {
+    const days = commitment.timeframe === "3days" ? 3 : 7;
+    deadline.setDate(deadline.getDate() + days);
+    deadline.setHours(23, 59, 59, 999);
+  }
+
+  return Date.now() > deadline.getTime();
 }
 
 export function commitChallenge(id, timeframe) {
