@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import confetti from "canvas-confetti";
 import { challengesByWeek } from "./challenges";
 import { markChallengeDone, isChallengeDone, getDoneChallenges } from "./doneStorage";
 import {
@@ -32,6 +33,7 @@ function ChallengeDetail() {
   const challenge = allChallenges.find((c) => c.id === id);
 
   const [picking, setPicking] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState("3days");
   const [commitment, setCommitment] = useState(() =>
     challenge ? getChallengeCommitment(challenge.id) : null
@@ -80,7 +82,14 @@ function ChallengeDetail() {
   const handleDone = () => {
     markChallengeDone(challenge.id);
     clearCommitment();
-    navigate("/");
+    confetti({
+      particleCount: 120,
+      spread: 70,
+      origin: { y: 0.75 },
+      colors: ["#f14e4e", "#4caf50", "#ffd700", "#42a5f5", "#ff9800"],
+    });
+    setShowToast(true);
+    setTimeout(() => navigate("/"), 2500);
   };
 
   const handleCommit = () => {
@@ -201,6 +210,9 @@ function ChallengeDetail() {
             </div>
           )}
         </>
+      )}
+      {showToast && (
+        <div className="success-toast">🎉 Super! Weiter so!</div>
       )}
     </div>
   );

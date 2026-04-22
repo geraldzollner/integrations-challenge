@@ -283,3 +283,28 @@ p {
   margin-top: 12px;
   margin-bottom: 12px;
 }
+
+/* SUCCESS TOAST */
+.success-toast {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #111;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 40px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: toast-in-out 2.5s ease forwards;
+  z-index: 999;
+}
+
+@keyframes toast-in-out {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(-34px); }
+  15%  { opacity: 1; transform: translateX(-50%) translateY(-50%); }
+  75%  { opacity: 1; transform: translateX(-50%) translateY(-50%); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-62px); }
+}
