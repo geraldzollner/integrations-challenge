@@ -11,6 +11,8 @@ export const challengesByWeek = [
           "Grüße heute drei fremde Personen mit einem Lächeln und einem einfachen «Hallo» - beim Einkaufen, im Treppenhaus oder auf der Straße.",
         guidance:
           "Du musst nichts sagen außer «Hallo». Ein Lächeln reicht oft schon. Kleine Gesten haben überraschend große Wirkung.",
+        example:
+          "«Hallo, schönen Tag noch!» - oder einfach ein Nicken mit Augenkontakt. Das reicht völlig.",
       },
       {
         id: "t1c2",
@@ -20,6 +22,8 @@ export const challengesByWeek = [
           "Beginne ein kurzes Gespräch mit einer dir unbekannten Person - z.B. in einem Café, im Park oder an der Bushaltestelle.",
         guidance:
           "Ein Satz reicht. Kommentiere die Situation, das Wetter oder etwas Offensichtliches. Perfektion ist nicht das Ziel - der erste Kontakt ist es.",
+        example:
+          "«Entschuldigung, wissen Sie, ob das Café hier noch auf hat?» oder «Schönes Wetter heute, oder?»",
       },
       {
         id: "t1c3",
@@ -29,6 +33,8 @@ export const challengesByWeek = [
           "Bitte jemanden um eine lokale Empfehlung: ein Restaurant, ein Café, ein Ausflugsziel - auch wenn du die Antwort vielleicht gar nicht brauchst.",
         guidance:
           "Menschen helfen gerne. Eine konkrete Frage macht den Einstieg leicht - und oft ergibt sich daraus ein richtiges Gespräch.",
+        example:
+          "«Ich bin noch nicht so lange hier - haben Sie ein Lieblingsrestaurant in der Gegend?»",
       },
       {
         id: "t1c4",
@@ -38,6 +44,8 @@ export const challengesByWeek = [
           "Mach heute jemandem ein ehrliches, konkretes Kompliment - einer Kollegin, einem Nachbarn oder einer Person, der du begegnest.",
         guidance:
           "Konkret ist besser als allgemein. «Ich mag, wie du das erklärt hast» wirkt stärker als «Du bist nett». Und: Nimm auch Komplimente bewusst an.",
+        example:
+          "«Ich wollte kurz sagen - ich finde, du erklärst das immer sehr klar.» oder «Das hast du wirklich toll gemacht.»",
       },
       {
         id: "t1c5",
@@ -47,6 +55,8 @@ export const challengesByWeek = [
           "Lade eine Kollegin, einen Kollegen oder eine Nachbarin zu einem Kaffee oder Mittagessen ein - nur ihr zwei.",
         guidance:
           "Halte die Einladung unkompliziert. One-on-one ist viel einfacher als Gruppen. Schreib einfach kurz an - die meisten freuen sich.",
+        example:
+          "«Ich wollte dich schon länger fragen - hättest du mal Lust auf einen Kaffee?»",
       },
       {
         id: "t1c6",
@@ -56,6 +66,8 @@ export const challengesByWeek = [
           "Sprich mit jemandem, den du noch nicht gut kennst, über ein lokales Thema: ein Stadtfest, eine Baustelle, ein neues Lokal.",
         guidance:
           "Alltagsthemen sind der einfachste Gesprächseinstieg. Du musst keine starke Meinung haben - Neugier reicht völlig.",
+        example:
+          "«Haben Sie das mit [lokales Thema] mitbekommen? Was denken Sie darüber?»",
       },
       {
         id: "t1c7",
@@ -65,6 +77,8 @@ export const challengesByWeek = [
           "Frage eine lokale Person nach einem Feiertag oder Fest, das du noch nicht kennst. Lass dir erzählen, wie es gefeiert wird.",
         guidance:
           "Echte Neugier öffnet Türen. Menschen teilen ihre Traditionen gerne - du musst nur fragen.",
+        example:
+          "«Ich kenne dieses Fest noch nicht so gut - wie wird das bei Ihnen gefeiert?»",
       },
       {
         id: "t1c8",
@@ -74,6 +88,8 @@ export const challengesByWeek = [
           "Erzähl jemandem von einer Tradition aus deiner Familie oder Herkunft - und frag nach ihrer.",
         guidance:
           "Persönliche Geschichten schaffen Nähe. Du musst nichts Großes teilen - eine kleine Tradition oder ein Ritual reicht.",
+        example:
+          "«Bei uns zu Hause machen wir immer [Tradition] - habt ihr so etwas auch?»",
       },
       {
         id: "t1c9",
@@ -143,6 +159,8 @@ export const challengesByWeek = [
           "Tausche mit jemandem, den du in den letzten Wochen kennengelernt hast, Kontaktdaten aus - und schreib ihm oder ihr danach kurz.",
         guidance:
           "«Hat mich gefreut, dich kennenzulernen» reicht völlig. Der erste Follow-up ist oft der schwerste - und der wichtigste.",
+        example:
+          "«Es hat mich wirklich gefreut, dich kennenzulernen - darf ich dich auf Instagram hinzufügen, oder hast du WhatsApp?»",
       },
       {
         id: "t2c6",
@@ -152,6 +170,8 @@ export const challengesByWeek = [
           "Frag jemanden, wie er oder sie hier aufgewachsen ist. Was war anders? Was hat sich verändert?",
         guidance:
           "Das ist tieferes Terrain - und genau richtig für Thema 2. Persönliche Geschichten entstehen, wenn man nachfragt.",
+        example:
+          "«Bist du hier aufgewachsen? Wie war das damals so - hat sich viel verändert?»",
       },
       {
         id: "t2c7",
@@ -161,6 +181,8 @@ export const challengesByWeek = [
           "Sprich mit jemandem über ein aktuelles Ereignis und frage nach ihrer persönlichen Sichtweise - nicht nur Fakten, sondern Meinungen.",
         guidance:
           "«Was denkst du darüber?» ist eine der stärksten Fragen. Sie zeigt, dass du die Person - nicht nur das Thema - interessiert.",
+        example:
+          "«Ich hab das letzte Woche gelesen und musste an dich denken - was denkst du darüber?»",
       },
       {
         id: "t2c8",
@@ -212,6 +234,8 @@ export const challengesByWeek = [
           "Schlage in einer Gruppe, einem Verein oder einer Gemeinschaft eine konkrete Idee oder Verbesserung vor.",
         guidance:
           "Du musst kein Experte sein. Oft brauchen Gruppen einfach jemanden, der eine frische Perspektive einbringt.",
+        example:
+          "«Ich hatte eine Idee, die ich kurz teilen wollte - wäre das hier der richtige Moment?»",
       },
       {
         id: "t3c3",
@@ -221,6 +245,8 @@ export const challengesByWeek = [
           "Teile etwas aus deiner eigenen Kultur, deinem Hintergrund oder deinen Fähigkeiten mit jemandem hier.",
         guidance:
           "Was für dich selbstverständlich ist, kann für andere spannend und neu sein. Teilen schafft Vertrauen.",
+        example:
+          "«Bei uns macht man das eigentlich so - darf ich kurz zeigen, wie?»",
       },
       {
         id: "t3c4",
@@ -239,6 +265,8 @@ export const challengesByWeek = [
           "Stelle zwei Personen aus verschiedenen Teilen deines Lebens einander vor - weil du denkst, sie könnten sich mögen oder voneinander profitieren.",
         guidance:
           "«Ich kenne jemanden, den du kennen solltest» ist ein starkes Zeichen: Es zeigt, dass du an andere denkst.",
+        example:
+          "«Ich muss euch unbedingt bekannt machen - ihr habt beide [Gemeinsamkeit], das passt perfekt.»",
       },
       {
         id: "t3c6",

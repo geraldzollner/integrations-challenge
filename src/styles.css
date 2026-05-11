@@ -472,3 +472,9 @@ p {
 .modal-dot--active {
   background: rgb(241, 78, 78);
 }
+
+/* EXAMPLE PHRASE */
+.example-phrase {
+  font-style: italic;
+  color: #555;
+}

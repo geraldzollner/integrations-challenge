@@ -158,6 +158,12 @@ function ChallengeDetail() {
           <p>{challenge.guidance}</p>
         </div>
       )}
+      {challenge.example && (
+        <div className="card-soft">
+          <h3>Beispiel</h3>
+          <p className="example-phrase">{challenge.example}</p>
+        </div>
+      )}
 
       {/* DONE */}
       {done && (
