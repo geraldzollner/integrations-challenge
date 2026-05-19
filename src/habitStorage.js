@@ -9,13 +9,14 @@ export function getHabits() {
   return JSON.parse(localStorage.getItem(HABITS_KEY) || "[]");
 }
 
-export function addHabit(challenge) {
+export function addHabit(challenge, themeIdx = 0) {
   const habits = getHabits();
   if (habits.some((h) => h.id === challenge.id)) return;
   habits.push({
     id: challenge.id,
     title: challenge.title,
     displayTitle: challenge.displayTitle,
+    themeIdx,
     createdAt: new Date().toISOString(),
   });
   localStorage.setItem(HABITS_KEY, JSON.stringify(habits));

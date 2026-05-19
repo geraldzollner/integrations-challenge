@@ -1,0 +1,150 @@
+/* Design tokens for Talkin' Deutsch — B-plus tokens
+   Auto-generated from design_handoff_talkin_deutsch/README.md
+*/
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/InstrumentSerif-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/Inter-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Inter-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+}
+
+:root{
+  /* Colors */
+  --color-ink: #0A0E1A;
+  --color-ink-soft: #525866;
+  --color-ink-mute: #9098A4;
+  --color-bg: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-hair: #ECEEF1;
+  --color-brand-navy: #03045E;
+  --color-brand-blue: #0077B6;
+  --color-brand-sky: #00B4D8;
+
+  /* Theme scale (0..3) */
+  --theme-0-color: #0096C7; /* Erster Kontakt */
+  --theme-0-deep:  #0077B6;
+  --theme-0-soft:  #CAEAF5;
+
+  --theme-1-color: #0077B6; /* Wiederkehrende Begegnungen */
+  --theme-1-deep:  #023E8A;
+  --theme-1-soft:  #BBD4EA;
+
+  --theme-2-color: #023E8A; /* Aktive Teilhabe */
+  --theme-2-deep:  #03045E;
+  --theme-2-soft:  #C5D0E5;
+
+  --theme-3-color: #03045E; /* Tiefe Verbindungen */
+  --theme-3-deep:  #000033;
+  --theme-3-soft:  #D5DAE8;
+
+  /* Typography families */
+  --font-display: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --font-ui: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Monaco, "Courier New", monospace;
+
+  /* Radii */
+  --radius-xl: 18px;
+  --radius-lg: 16px;
+  --radius-md: 14px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+
+  /* Spacing */
+  --space: 24px;
+  --page-width: 452px;
+
+  /* Motion tokens */
+  --motion-ring-fill-dur: 900ms;
+  --motion-ring-fill-ease: cubic-bezier(.2,.7,.3,1);
+  --motion-bar-fill-dur: 600ms;
+  --motion-bar-fill-ease: cubic-bezier(.3,.7,.3,1);
+  --motion-rise-dur: 500ms;
+  --motion-rise-ease: cubic-bezier(.2,.7,.3,1);
+  --motion-burst-dur: 600ms;
+
+  /* Shadows (use with rgba hex opacities) */
+  --shadow-card: 0 6px 24px -10px rgba(0,0,0,0.08);
+
+  /* Misc */
+  --hairline: 1px solid var(--color-hair);
+  /* Utilities */
+  --color-success: #4caf50;
+  --color-danger: rgb(241, 78, 78);
+  --color-danger-dark: rgb(210, 50, 50);
+  --color-disabled-bg: #e5e5e5;
+  --color-muted: #888888;
+  --color-muted-2: #555555;
+  --color-muted-3: #333333;
+  --color-surface-soft: #f7f7f7;
+}
+
+/* Utility font classes */
+.font-display{font-family:var(--font-display);}
+.font-ui{font-family:var(--font-ui);}
+.font-mono{font-family:var(--font-mono);}
+
+/* Display italic accent helper */
+.display-accent{font-style:italic;color:var(--color-brand-blue);}
+
+/* Root page defaults */
+html,body,#root{height:100%;}
+#root{width:100%;display:flex;flex-direction:column;align-items:center;}
+body{background:var(--color-bg);color:var(--color-ink);font-family:var(--font-ui);margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}

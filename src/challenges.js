@@ -2,44 +2,44 @@ export const challengesByWeek = [
   {
     week: "Thema 1",
     title: "Erster Kontakt",
+    sub: "Lächeln · grüßen · fragen",
     challenges: [
       {
         id: "t1c1",
-        title: "Lächle und sag Hallo ☀️",
-        displayTitle: "Lächle und sag Hallo ☀️",
+        title: "Lächle und sag Hallo",
+        displayTitle: "Lächle und sag Hallo",
         description:
           "Grüße heute drei fremde Personen mit einem Lächeln und einem einfachen «Hallo» - beim Einkaufen, im Treppenhaus oder auf der Straße.",
         guidance:
           "Du musst nichts sagen außer «Hallo». Ein Lächeln reicht oft schon. Kleine Gesten haben überraschend große Wirkung.",
-        example:
-          "«Hallo, schönen Tag noch!» - oder einfach ein Nicken mit Augenkontakt. Das reicht völlig.",
+       
       },
       {
         id: "t1c2",
-        title: "Break the Ice! 🧊",
-        displayTitle: "Break the Ice! 🧊",
+        title: "Break the Ice!",
+        displayTitle: "Break the Ice!",
         description:
           "Beginne ein kurzes Gespräch mit einer dir unbekannten Person - z.B. in einem Café, im Park oder an der Bushaltestelle.",
         guidance:
           "Ein Satz reicht. Kommentiere die Situation, das Wetter oder etwas Offensichtliches. Perfektion ist nicht das Ziel - der erste Kontakt ist es.",
         example:
-          "«Entschuldigung, wissen Sie, ob das Café hier noch auf hat?» oder «Schönes Wetter heute, oder?»",
+          "«Entschuldigung, wissen Sie, ob das Café hier noch auf hat?» oder «Super Wetter heute, oder?»",
       },
       {
         id: "t1c3",
-        title: "Frag nach einer Empfehlung 🗺️",
-        displayTitle: "Frag nach einer Empfehlung 🗺️",
+        title: "Frag nach einer Empfehlung",
+        displayTitle: "Frag nach einer Empfehlung",
         description:
           "Bitte jemanden um eine lokale Empfehlung: ein Restaurant, ein Café, ein Ausflugsziel - auch wenn du die Antwort vielleicht gar nicht brauchst.",
         guidance:
           "Menschen helfen gerne. Eine konkrete Frage macht den Einstieg leicht - und oft ergibt sich daraus ein richtiges Gespräch.",
         example:
-          "«Ich bin noch nicht so lange hier - haben Sie ein Lieblingsrestaurant in der Gegend?»",
+          "Zu einem Kollegen: «Ich möchte nach der Arbeit noch was essen gehen. Kennst du ein gutes Restaurant in der Gegend?»",
       },
       {
         id: "t1c4",
-        title: "Mach ein Kompliment 💬",
-        displayTitle: "Mach ein Kompliment 💬",
+        title: "Mach ein Kompliment",
+        displayTitle: "Mach ein Kompliment",
         description:
           "Mach heute jemandem ein ehrliches, konkretes Kompliment - einer Kollegin, einem Nachbarn oder einer Person, der du begegnest.",
         guidance:
@@ -49,8 +49,8 @@ export const challengesByWeek = [
       },
       {
         id: "t1c5",
-        title: "Zeit für einen Kaffee? ☕",
-        displayTitle: "Zeit für einen Kaffee? ☕",
+        title: "Zeit für einen Kaffee?",
+        displayTitle: "Zeit für einen Kaffee?",
         description:
           "Lade eine Kollegin, einen Kollegen oder eine Nachbarin zu einem Kaffee oder Mittagessen ein - nur ihr zwei.",
         guidance:
@@ -60,8 +60,8 @@ export const challengesByWeek = [
       },
       {
         id: "t1c6",
-        title: "Local Talk 🗞️",
-        displayTitle: "Local Talk 🗞️",
+        title: "Local Talk",
+        displayTitle: "Local Talk",
         description:
           "Sprich mit jemandem, den du noch nicht gut kennst, über ein lokales Thema: ein Stadtfest, eine Baustelle, ein neues Lokal.",
         guidance:
@@ -71,8 +71,8 @@ export const challengesByWeek = [
       },
       {
         id: "t1c7",
-        title: "Nach einem Fest fragen 🌎",
-        displayTitle: "Nach einem Fest fragen 🌎",
+        title: "Nach einem Fest fragen",
+        displayTitle: "Nach einem Fest fragen",
         description:
           "Frage eine lokale Person nach einem Feiertag oder Fest, das du noch nicht kennst. Lass dir erzählen, wie es gefeiert wird.",
         guidance:
@@ -82,8 +82,8 @@ export const challengesByWeek = [
       },
       {
         id: "t1c8",
-        title: "Über Familientraditionen sprechen 👨‍👩‍👧",
-        displayTitle: "Über Familientraditionen sprechen 👨‍👩‍👧",
+        title: "Über Familientraditionen sprechen",
+        displayTitle: "Über Familientraditionen sprechen",
         description:
           "Erzähl jemandem von einer Tradition aus deiner Familie oder Herkunft - und frag nach ihrer.",
         guidance:
@@ -93,8 +93,8 @@ export const challengesByWeek = [
       },
       {
         id: "t1c9",
-        title: "Lust auf Kultur? 🎭",
-        displayTitle: "Lust auf Kultur? 🎭",
+        title: "Lust auf Kultur?",
+        displayTitle: "Lust auf Kultur?",
         description:
           "Besuche eine lokale Veranstaltung (Konzert, Ausstellung, Lesung) und sprich danach mit jemandem darüber, was du erlebt hast.",
         guidance:
@@ -102,8 +102,8 @@ export const challengesByWeek = [
       },
       {
         id: "t1c10",
-        title: "Über deinen Wohnort sprechen 🏙️",
-        displayTitle: "Über deinen Wohnort sprechen 🏙️",
+        title: "Über deinen Wohnort sprechen",
+        displayTitle: "Über deinen Wohnort sprechen",
         description:
           "Erzähl jemandem, was dir an deinem Wohnort gefällt - und was dir noch fehlt oder fremd ist.",
         guidance:
@@ -114,11 +114,12 @@ export const challengesByWeek = [
   {
     week: "Thema 2",
     title: "Wiederkehrende Begegnungen",
+    sub: "Wiedersehen · erinnern · verbinden",
     challenges: [
       {
         id: "t2c1",
-        title: "Zeit für Sport! 🏃",
-        displayTitle: "Zeit für Sport! 🏃",
+        title: "Zeit für Sport!",
+        displayTitle: "Zeit für Sport!",
         description:
           "Nimm an einer lokalen Gruppenaktivität teil: Run Club, Yoga, Fußball, Schwimmkurs - irgendetwas, das regelmäßig stattfindet.",
         guidance:
@@ -126,8 +127,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c2",
-        title: "Hobbygruppe beitreten 🪴",
-        displayTitle: "Hobbygruppe beitreten 🪴",
+        title: "Hobbygruppe beitreten",
+        displayTitle: "Hobbygruppe beitreten",
         description:
           "Tritt einer lokalen Hobbygruppe bei und beteilige dich aktiv - nicht nur zuschauen.",
         guidance:
@@ -135,8 +136,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c3",
-        title: "Wieder hingehen 🔁",
-        displayTitle: "Wieder hingehen 🔁",
+        title: "Wieder hingehen",
+        displayTitle: "Wieder hingehen",
         description:
           "Geh an einen Ort zurück, an dem du letzte Woche eine positive Begegnung hattest. Zeig einfach wieder auf.",
         guidance:
@@ -144,8 +145,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c4",
-        title: "Kurs oder Workshop besuchen 📚",
-        displayTitle: "Kurs oder Workshop besuchen 📚",
+        title: "Kurs oder Workshop besuchen",
+        displayTitle: "Kurs oder Workshop besuchen",
         description:
           "Besuche einen lokalen Kurs oder Workshop und stelle dich der Kursleitung und mindestens einer anderen Person vor.",
         guidance:
@@ -153,8 +154,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c5",
-        title: "Kontakt tauschen 📲",
-        displayTitle: "Kontakt tauschen 📲",
+        title: "Kontakt tauschen",
+        displayTitle: "Kontakt tauschen",
         description:
           "Tausche mit jemandem, den du in den letzten Wochen kennengelernt hast, Kontaktdaten aus - und schreib ihm oder ihr danach kurz.",
         guidance:
@@ -164,8 +165,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c6",
-        title: "Über das Aufwachsen sprechen 🏡",
-        displayTitle: "Über das Aufwachsen sprechen 🏡",
+        title: "Über das Aufwachsen sprechen",
+        displayTitle: "Über das Aufwachsen sprechen",
         description:
           "Frag jemanden, wie er oder sie hier aufgewachsen ist. Was war anders? Was hat sich verändert?",
         guidance:
@@ -175,8 +176,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c7",
-        title: "Über ein aktuelles Thema sprechen 🌍",
-        displayTitle: "Über ein aktuelles Thema sprechen 🌍",
+        title: "Über ein aktuelles Thema sprechen",
+        displayTitle: "Über ein aktuelles Thema sprechen",
         description:
           "Sprich mit jemandem über ein aktuelles Ereignis und frage nach ihrer persönlichen Sichtweise - nicht nur Fakten, sondern Meinungen.",
         guidance:
@@ -186,8 +187,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c8",
-        title: "Gemeinsame Aktivität planen 📅",
-        displayTitle: "Gemeinsame Aktivität planen 📅",
+        title: "Gemeinsame Aktivität planen",
+        displayTitle: "Gemeinsame Aktivität planen",
         description:
           "Verabrede dich konkret für ein nächstes Treffen oder eine gemeinsame Aktivität mit jemandem, den du schon kennst.",
         guidance:
@@ -195,8 +196,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c9",
-        title: "Zu einer Veranstaltung einladen 🎉",
-        displayTitle: "Zu einer Veranstaltung einladen 🎉",
+        title: "Zu einer Veranstaltung einladen",
+        displayTitle: "Zu einer Veranstaltung einladen",
         description:
           "Lade jemanden zu einer lokalen Veranstaltung ein, die du sowieso besuchst.",
         guidance:
@@ -204,8 +205,8 @@ export const challengesByWeek = [
       },
       {
         id: "t2c10",
-        title: "Meinung zu Veränderungen einholen 🔄",
-        displayTitle: "Meinung zu Veränderungen einholen 🔄",
+        title: "Meinung zu Veränderungen einholen",
+        displayTitle: "Meinung zu Veränderungen einholen",
         description:
           "Frag jemanden, wie sich die Stadt oder das Viertel in den letzten Jahren verändert hat - und was sie davon halten.",
         guidance:
@@ -216,11 +217,12 @@ export const challengesByWeek = [
   {
     week: "Thema 3",
     title: "Aktive Teilhabe",
+    sub: "Mitmachen · mitreden · mitgestalten",
     challenges: [
       {
         id: "t3c1",
-        title: "Hilf mit! 🤝",
-        displayTitle: "Hilf mit! 🤝",
+        title: "Hilf mit!",
+        displayTitle: "Hilf mit!",
         description:
           "Engagiere dich ehrenamtlich bei einer lokalen Organisation, einem Event oder einer Initiative.",
         guidance:
@@ -228,8 +230,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c2",
-        title: "Idee einbringen 💡",
-        displayTitle: "Idee einbringen 💡",
+        title: "Idee einbringen",
+        displayTitle: "Idee einbringen",
         description:
           "Schlage in einer Gruppe, einem Verein oder einer Gemeinschaft eine konkrete Idee oder Verbesserung vor.",
         guidance:
@@ -239,8 +241,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c3",
-        title: "Jemandem etwas beibringen 📖",
-        displayTitle: "Jemandem etwas beibringen 📖",
+        title: "Jemandem etwas beibringen",
+        displayTitle: "Jemandem etwas beibringen",
         description:
           "Teile etwas aus deiner eigenen Kultur, deinem Hintergrund oder deinen Fähigkeiten mit jemandem hier.",
         guidance:
@@ -250,8 +252,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c4",
-        title: "Kleines Treffen organisieren 🍰",
-        displayTitle: "Kleines Treffen organisieren 🍰",
+        title: "Kleines Treffen organisieren",
+        displayTitle: "Kleines Treffen organisieren",
         description:
           "Organisiere ein kleines Treffen: Nachbarn, Kollegen, Bekannte. Du bist der Gastgeber - auch wenn es nur ein Kaffee ist.",
         guidance:
@@ -259,8 +261,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c5",
-        title: "Zwei Menschen vorstellen 🤝",
-        displayTitle: "Zwei Menschen vorstellen 🤝",
+        title: "Zwei Menschen vorstellen",
+        displayTitle: "Zwei Menschen vorstellen",
         description:
           "Stelle zwei Personen aus verschiedenen Teilen deines Lebens einander vor - weil du denkst, sie könnten sich mögen oder voneinander profitieren.",
         guidance:
@@ -270,8 +272,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c6",
-        title: "Gesellschaftliches Thema diskutieren 🌍",
-        displayTitle: "Gesellschaftliches Thema diskutieren 🌍",
+        title: "Gesellschaftliches Thema diskutieren",
+        displayTitle: "Gesellschaftliches Thema diskutieren",
         description:
           "Führe ein respektvolles Gespräch über ein politisches oder gesellschaftliches Thema mit jemandem, der vielleicht anders denkt als du.",
         guidance:
@@ -279,8 +281,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c7",
-        title: "Für etwas eintreten 📣",
-        displayTitle: "Für etwas eintreten 📣",
+        title: "Für etwas eintreten",
+        displayTitle: "Für etwas eintreten",
         description:
           "Setze dich öffentlich für etwas ein: unterschreibe eine Petition, besuche eine Gemeindesitzung, schreib an eine lokale Initiative.",
         guidance:
@@ -288,8 +290,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c8",
-        title: "Tipps weitergeben 🗺️",
-        displayTitle: "Tipps weitergeben 🗺️",
+        title: "Tipps weitergeben",
+        displayTitle: "Tipps weitergeben",
         description:
           "Gib einer Person, die neu in der Stadt oder im Viertel ist, Empfehlungen oder Orientierungshilfen.",
         guidance:
@@ -297,8 +299,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c9",
-        title: "Ein Event mitorganisieren 🎊",
-        displayTitle: "Ein Event mitorganisieren 🎊",
+        title: "Ein Event mitorganisieren",
+        displayTitle: "Ein Event mitorganisieren",
         description:
           "Beteilige dich aktiv an der Organisation eines Gemeinschaftsevents: Straßenfest, Sportturnier, Kulturabend.",
         guidance:
@@ -306,8 +308,8 @@ export const challengesByWeek = [
       },
       {
         id: "t3c10",
-        title: "Konflikt ansprechen 🕊️",
-        displayTitle: "Konflikt ansprechen 🕊️",
+        title: "Konflikt ansprechen",
+        displayTitle: "Konflikt ansprechen",
         description:
           "Sprich eine kleine Spannung oder ein Missverständnis mit jemandem ruhig und direkt an.",
         guidance:
@@ -318,11 +320,12 @@ export const challengesByWeek = [
   {
     week: "Thema 4",
     title: "Tiefe Verbindungen",
+    sub: "Teilen · zuhören · vertrauen",
     challenges: [
       {
         id: "t4c1",
-        title: "Jemanden zu dir einladen 🏠",
-        displayTitle: "Jemanden zu dir einladen 🏠",
+        title: "Jemanden zu dir einladen",
+        displayTitle: "Jemanden zu dir einladen",
         description:
           "Lade jemanden zu dir nach Hause ein - zum Essen, Tee oder einfach so.",
         guidance:
@@ -330,8 +333,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c2",
-        title: "Eine persönliche Geschichte teilen 💭",
-        displayTitle: "Eine persönliche Geschichte teilen 💭",
+        title: "Eine persönliche Geschichte teilen",
+        displayTitle: "Eine persönliche Geschichte teilen",
         description:
           "Erzähl jemandem etwas Persönliches über deinen Weg hierher - warum du gekommen bist, was du dir erhofft hast, was schwer war.",
         guidance:
@@ -339,8 +342,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c3",
-        title: "Um Rat fragen 🙏",
-        displayTitle: "Um Rat fragen 🙏",
+        title: "Um Rat fragen",
+        displayTitle: "Um Rat fragen",
         description:
           "Bitte jemanden, dem du vertraust, um einen ehrlichen Rat zu etwas, das dich wirklich beschäftigt.",
         guidance:
@@ -348,8 +351,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c4",
-        title: "Regelmäßig werden 📍",
-        displayTitle: "Regelmäßig werden 📍",
+        title: "Regelmäßig werden",
+        displayTitle: "Regelmäßig werden",
         description:
           "Geh dreimal in Folge an denselben Ort: dasselbe Café, denselben Markt, dieselbe Gruppe. Werde bekannt.",
         guidance:
@@ -357,8 +360,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c5",
-        title: "Jemandem wirklich danken 🙏",
-        displayTitle: "Jemandem wirklich danken 🙏",
+        title: "Jemandem wirklich danken",
+        displayTitle: "Jemandem wirklich danken",
         description:
           "Bedanke dich bei jemandem ehrlich und konkret für etwas, das er oder sie für dich getan hat - auch wenn es schon länger her ist.",
         guidance:
@@ -366,8 +369,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c6",
-        title: "Über Heimat sprechen 🌍",
-        displayTitle: "Über Heimat sprechen 🌍",
+        title: "Über Heimat sprechen",
+        displayTitle: "Über Heimat sprechen",
         description:
           "Sprich mit jemandem über das, was Heimat für dich bedeutet - und was es für sie bedeutet.",
         guidance:
@@ -375,8 +378,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c7",
-        title: "Für jemanden da sein ❤️",
-        displayTitle: "Für jemanden da sein ❤️",
+        title: "Für jemanden da sein",
+        displayTitle: "Für jemanden da sein",
         description:
           "Unterstütze jemanden in deinem Umfeld in einem schwierigen Moment - sei es durch ein Gespräch, praktische Hilfe oder einfach deine Anwesenheit.",
         guidance:
@@ -384,8 +387,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c8",
-        title: "Einen Mentor finden 🌟",
-        displayTitle: "Einen Mentor finden 🌟",
+        title: "Einen Mentor finden",
+        displayTitle: "Einen Mentor finden",
         description:
           "Finde jemanden, der sich hier gut auskennt und bereit ist, dir regelmäßig als Ansprechperson zu helfen.",
         guidance:
@@ -393,8 +396,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c9",
-        title: "Dein Netzwerk feiern 🥂",
-        displayTitle: "Dein Netzwerk feiern 🥂",
+        title: "Dein Netzwerk feiern",
+        displayTitle: "Dein Netzwerk feiern",
         description:
           "Schau zurück auf die letzten Wochen. Wen hast du kennengelernt? Was hat sich verändert? Feiere das - mit einem kleinen Treffen deiner neuen Kontakte.",
         guidance:
@@ -402,8 +405,8 @@ export const challengesByWeek = [
       },
       {
         id: "t4c10",
-        title: "Bleib dran 🔁",
-        displayTitle: "Bleib dran 🔁",
+        title: "Bleib dran",
+        displayTitle: "Bleib dran",
         description:
           "Melde dich bei jemandem, mit dem du länger nicht gesprochen hast - ohne besonderen Anlass, einfach so.",
         guidance:

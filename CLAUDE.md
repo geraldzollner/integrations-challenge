@@ -66,6 +66,11 @@ npm run preview  # preview production build locally
 Deployed on **Vercel**. Push to main or run `vercel --prod` to deploy.
 The `vercel.json` rewrites all routes to `index.html` for client-side routing.
 
+## How to start a session
+- Owner uses Claude Code from the Claude Desktop App (not terminal)
+- At the start of each session, tell Claude: "The project is at /Users/geraldzollner/Documents/integrations-challenge"
+- Claude will then read this CLAUDE.md file automatically
+
 ## Working style preferences
 - Owner has a PM background — user stories and Figma links are good inputs
 - Figma MCP is available in Claude Code for direct design imports
