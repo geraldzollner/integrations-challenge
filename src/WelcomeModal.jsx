@@ -1,16 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Wordmark from "./components/Wordmark";
 
 const STORAGE_KEY = "onboarding_seen";
 
 function WelcomeModal() {
   const [visible, setVisible] = useState(() => !localStorage.getItem(STORAGE_KEY));
+  const navigate = useNavigate();
 
   if (!visible) return null;
 
   function handleStart() {
     localStorage.setItem(STORAGE_KEY, "true");
     setVisible(false);
+    navigate("/");
   }
 
   return (
@@ -18,7 +21,7 @@ function WelcomeModal() {
       <Wordmark size={22} className="welcome__wordmark" />
 
       <div className="welcome__hero bp-rise">
-        <svg width="180" height="180" viewBox="0 0 180 180" aria-hidden>
+        <svg width="160" height="160" viewBox="0 0 180 180" aria-hidden>
           <defs>
             <radialGradient id="bp-glow-w" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="var(--color-brand-sky)" stopOpacity="0.28" />
@@ -49,8 +52,13 @@ function WelcomeModal() {
       <div className="welcome__spacer" />
 
       <div className="bp-rise" style={{ animationDelay: '320ms' }}>
+        <p className="welcome__reassurance">
+          Nervös sein{' '}
+          <span style={{ color: 'var(--color-brand-blue)' }}>ist normal</span>
+          {' '}— es bedeutet nur,<br />
+          dass du dich wirklich auf das Leben einlässt.
+        </p>
         <button className="welcome__btn-primary" onClick={handleStart}>Loslegen</button>
-        <button className="welcome__btn-secondary" onClick={handleStart}>Schon dabei? Anmelden</button>
       </div>
     </div>
   );

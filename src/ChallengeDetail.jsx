@@ -14,19 +14,37 @@ function getTimeframeSub(key) {
   return d.toLocaleDateString('de-DE', { weekday: 'short' }).replace('.', '');
 }
 
-function getDeadlineLabel(timeframe) {
-  if (timeframe === 'today') return 'Heute';
-  const daysAhead = { '3days': 3, week: 7 };
-  const d = new Date();
-  d.setDate(d.getDate() + (daysAhead[timeframe] ?? 0));
-  return d.toLocaleDateString('de-DE', { weekday: 'long' });
-}
-
 const TIMEFRAMES = [
   { key: 'today', label: 'Heute' },
   { key: '3days', label: 'In 3 Tagen' },
   { key: 'week', label: 'Diese Woche' },
 ];
+
+function computeDeadlineMeta(commitment) {
+  if (!commitment) return null;
+  const start = new Date(commitment.committedAt);
+  const daysMap = { today: 0, '3days': 3, week: 7 };
+  const totalDays = Math.max(1, daysMap[commitment.timeframe] ?? 0);
+  const deadline = new Date(start);
+  deadline.setDate(deadline.getDate() + totalDays);
+  deadline.setHours(23, 59, 59, 999);
+
+  const now = new Date();
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const daysLeft = Math.max(0, Math.ceil((deadline - now) / msPerDay));
+  const elapsed = totalDays - daysLeft;
+  const progress = Math.min(1, Math.max(0, elapsed / totalDays));
+
+  let deadlineLabel;
+  if (daysLeft <= 0) deadlineLabel = 'bis Heute';
+  else if (daysLeft === 1) deadlineLabel = 'bis Morgen';
+  else deadlineLabel = 'bis ' + deadline.toLocaleDateString('de-DE', { weekday: 'long' });
+
+  const startLabel = 'Seit ' + start.toLocaleDateString('de-DE', { weekday: 'short' }).replace('.', '');
+  const endLabel = deadline.toLocaleDateString('de-DE', { weekday: 'short' }).replace('.', '');
+
+  return { deadlineLabel, progress, startLabel, endLabel };
+}
 
 function ChallengeDetail() {
   const { id } = useParams();
@@ -78,6 +96,7 @@ function ChallengeDetail() {
 
   const done = isChallengeDone(challenge.id);
   const commitment = getChallengeCommitment(challenge.id);
+  const deadlineMeta = computeDeadlineMeta(commitment);
 
   const handleMarkDone = () => {
     markChallengeDone(challenge.id);
@@ -96,6 +115,11 @@ function ChallengeDetail() {
     navigate(-1);
   };
 
+  const handlePause = () => {
+    clearCommitment();
+    navigate(-1);
+  };
+
   return (
     <div className="detail-page">
       <div className="detail-topbar">
@@ -105,7 +129,10 @@ function ChallengeDetail() {
           </svg>
         </button>
         <div className="detail-pill" style={{ background: t.soft, color: t.deep }}>
-          <div className="detail-pill__dot" style={{ background: t.color }} />
+          <div
+            className={`detail-pill__dot${commitment ? ' bp-pulse-dot' : ''}`}
+            style={{ background: t.color }}
+          />
           Thema 0{t.num} · Aufgabe {taskIndex + 1}
         </div>
         <div className="detail-topbar__spacer" />
@@ -119,6 +146,45 @@ function ChallengeDetail() {
         )}
       </div>
 
+      {/* Active status banner — replaces old "Ich mache das" card */}
+      {!done && commitment && deadlineMeta && (
+        <div className="detail-status-banner">
+          <div
+            className="detail-status-banner__card"
+            style={{ background: t.soft, border: `1px solid ${t.color}30` }}
+          >
+            <div className="detail-status-banner__row1">
+              <div className="detail-status-banner__left">
+                <span
+                  className="bp-pulse-dot detail-status-banner__dot"
+                  style={{ background: t.color, boxShadow: `0 0 0 4px ${t.color}26` }}
+                />
+                <span className="detail-status-banner__label" style={{ color: t.deep }}>
+                  Du machst das
+                </span>
+              </div>
+              <span className="detail-status-banner__deadline" style={{ color: t.deep }}>
+                {deadlineMeta.deadlineLabel}
+              </span>
+            </div>
+            <div className="detail-status-banner__bar-track" style={{ background: `${t.color}26` }}>
+              <div
+                className="detail-status-banner__bar-fill bp-bar-anim"
+                style={{
+                  width: `${deadlineMeta.progress * 100}%`,
+                  background: t.color,
+                  '--bp-bar-delay': '200ms',
+                }}
+              />
+            </div>
+            <div className="detail-status-banner__dates" style={{ color: t.deep }}>
+              <span>{deadlineMeta.startLabel}</span>
+              <span>{deadlineMeta.endLabel}</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {challenge.guidance && (
         <div className="detail-tip">
           <div className="detail-tip__rule" style={{ background: t.color }} />
@@ -129,7 +195,8 @@ function ChallengeDetail() {
         </div>
       )}
 
-      {picking && (
+      {/* Timeframe picker — only shown in open (no commitment) state */}
+      {!done && !commitment && picking && (
         <div className="detail-timeframe">
           <div className="detail-timeframe__label">Bis wann?</div>
           <div className="detail-timeframe__options">
@@ -156,15 +223,6 @@ function ChallengeDetail() {
         </div>
       )}
 
-      {!done && commitment && (
-        <div className="detail-committed" style={{ background: t.soft, borderColor: `${t.color}44` }}>
-          <div className="detail-committed__label" style={{ color: t.deep }}>Ich mache das</div>
-          <div className="detail-committed__deadline" style={{ color: t.color }}>
-            bis {getDeadlineLabel(commitment.timeframe)}
-          </div>
-        </div>
-      )}
-
       <div className="detail-cta">
         {done ? (
           <button
@@ -175,13 +233,29 @@ function ChallengeDetail() {
             Erledigt ✓
           </button>
         ) : commitment ? (
-          <button
-            className="detail-cta__primary"
-            onClick={handleMarkDone}
-            style={{ background: t.color, boxShadow: `0 8px 22px -6px ${t.color}90` }}
-          >
-            Als erledigt markieren
-          </button>
+          <>
+            <button
+              className="detail-cta__primary"
+              onClick={handleMarkDone}
+              style={{
+                background: t.color,
+                boxShadow: `0 10px 26px -8px ${t.color}`,
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+              }}
+            >
+              <svg width="16" height="14" viewBox="0 0 18 14" fill="none">
+                <path d="M1 7L6.5 12.5L17 1.5" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Als erledigt markieren
+            </button>
+            <button className="detail-cta__secondary" onClick={handlePause}>
+              Aufgabe pausieren
+            </button>
+          </>
         ) : picking ? (
           <>
             <button

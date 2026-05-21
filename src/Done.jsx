@@ -39,7 +39,7 @@ function Done() {
     navigate("/habits");
   };
 
-  const handleBack = () => navigate("/");
+  const handleBack = () => navigate(`/theme/${themeIndex}`);
 
   return (
     <div
@@ -75,6 +75,10 @@ function Done() {
 
         <div className="done-radiate bp-radiate" style={{ animationDelay: '100ms' }} />
         <div className="done-radiate bp-radiate" style={{ animationDelay: '300ms' }} />
+        <div className="done-radiate bp-radiate" style={{ animationDelay: '500ms' }} />
+        <div className="done-radiate bp-radiate" style={{ animationDelay: '700ms' }} />
+        <div className="done-radiate bp-radiate" style={{ animationDelay: '900ms' }} />
+        <div className="done-radiate bp-radiate" style={{ animationDelay: '1100ms' }} />
 
         <div className="done-badge bp-burst">
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none">

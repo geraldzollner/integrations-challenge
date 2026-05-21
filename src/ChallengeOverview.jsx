@@ -85,6 +85,10 @@ function ChallengeOverview() {
           const locked = isLocked(index);
           const t = THEMES[index];
           const isActive = index === activeThemeIdx;
+          const hasActiveTask = !locked &&
+            activeCommitment &&
+            !doneIds.includes(activeCommitment.challengeId) &&
+            week.challenges.some((c) => c.id === activeCommitment.challengeId);
 
           return (
             <div
@@ -92,8 +96,8 @@ function ChallengeOverview() {
               className="theme-card"
               onClick={() => handleThemeCardTap(index)}
               style={{
-                borderColor: isActive ? `${t.color}55` : 'var(--color-hair)',
-                boxShadow: isActive ? `0 6px 24px -10px ${t.color}55` : 'none',
+                borderColor: (isActive || hasActiveTask) ? `${t.color}55` : 'var(--color-hair)',
+                boxShadow: (isActive || hasActiveTask) ? `0 6px 24px -10px ${t.color}55` : 'none',
                 cursor: locked ? 'default' : 'pointer',
                 opacity: locked ? 0.55 : 1,
               }}
@@ -110,11 +114,22 @@ function ChallengeOverview() {
                 ) : (
                   <span className="theme-card__chip-num">{t.num}</span>
                 )}
+                {hasActiveTask && (
+                  <span
+                    className="bp-pulse-dot theme-card__active-indicator"
+                    style={{ border: `2.5px solid ${t.color}` }}
+                  />
+                )}
               </div>
 
               <div className="theme-card__body">
                 <div className="theme-card__title">{week.title}</div>
-                <div className="theme-card__sub">{week.sub}</div>
+                <div
+                  className="theme-card__sub"
+                  style={hasActiveTask ? { color: t.deep, fontWeight: 600 } : {}}
+                >
+                  {hasActiveTask ? `1 läuft · ${total - done - 1} offen` : week.sub}
+                </div>
                 {!locked && (
                   <div className="theme-card__bar">
                     <div className="theme-card__bar-fill" style={{ width: `${pct}%`, background: t.color }} />
@@ -132,38 +147,6 @@ function ChallengeOverview() {
         })}
       </div>
 
-      {upNext.length > 0 && (
-        <>
-          <div className="overview-section-label">Als nächstes</div>
-          <div className="overview-upnext">
-            {upNext.map(({ challenge, themeIdx, week }) => {
-              const t = THEMES[themeIdx];
-              return (
-                <Link
-                  key={challenge.id}
-                  to={`/challenge/${challenge.id}`}
-                  className={`upnext-card${activeCommitment?.challengeId === challenge.id ? ' upnext-card--active' : ''}`}
-                  onClick={() => sessionStorage.setItem("overviewScrollY", window.scrollY)}
-                >
-                  <div className="upnext-card__dot" style={{ background: t.color }} />
-                  <div className="upnext-card__body">
-                    <div className="upnext-card__title">
-                      {challenge.title}
-                      {activeCommitment?.challengeId === challenge.id && (
-                        <span className="upnext-card__badge" style={{ background: t.soft, color: t.deep }}>Aktiv</span>
-                      )}
-                    </div>
-                    <div className="upnext-card__sub">{week.sub}</div>
-                  </div>
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 1l6 6-6 6" stroke="var(--color-ink-mute)" strokeWidth="1.6" strokeLinecap="round" />
-                  </svg>
-                </Link>
-              );
-            })}
-          </div>
-        </>
-      )}
 
       <div className="page-bottom-spacer" />
     </div>
