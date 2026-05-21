@@ -5,7 +5,6 @@ import {
   removeHabit,
   isCheckedInToday,
   checkInToday,
-  getStreak,
   getLast7Days,
 } from "./habitStorage";
 import { THEMES } from "./themes";
@@ -16,7 +15,6 @@ const DAY_LABELS = ['M', 'D', 'M', 'D', 'F', 'S', 'S'];
 function HabitCard({ habit, onCheckin, onRemove }) {
   const t = THEMES[habit.themeIdx ?? 0];
   const checkedToday = isCheckedInToday(habit.id);
-  const streak = getStreak(habit.id);
   const last7 = getLast7Days(habit.id);
 
   return (
@@ -30,14 +28,7 @@ function HabitCard({ habit, onCheckin, onRemove }) {
             </div>
           </div>
           <div className="habit-card-new__title">{habit.displayTitle || habit.title}</div>
-          {streak > 0 && (
-            <div className="habit-card-new__streak" style={{ background: t.soft }}>
-              <svg width="10" height="10" viewBox="0 0 10 10">
-                <path d="M5 0c1 2 3 3 3 5.5A3 3 0 015 9 3 3 0 012 5.5C2 3.5 4 3 5 0z" fill={t.color} />
-              </svg>
-              <span style={{ color: t.deep }}>{streak} Tage Serie</span>
-            </div>
-          )}
+
         </div>
         <button className="habit-card-new__remove" onClick={() => onRemove(habit.id)} aria-label="Entfernen">
           ×

@@ -15,9 +15,16 @@ export default function OverviewHero({ theme = {}, overallDone = 0, overallTotal
       }}
     >
       <span className="overview-hero__deco-number" aria-hidden>{themeIdx + 1}</span>
+      <div style={{
+        position: 'absolute', top: 30, right: -60, width: 200, height: 200,
+        borderRadius: '50%', border: '1px solid rgba(255,255,255,0.13)', pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute', top: 70, right: -30, width: 140, height: 140,
+        borderRadius: '50%', border: '1px solid rgba(255,255,255,0.10)', pointerEvents: 'none',
+      }} />
       <div className="overview-hero__top">
         <Wordmark size={16} variant="dark" />
-        <button className="overview-hero__icon-button" aria-label="Gewohnheiten">L</button>
       </div>
       <MetaLabel className="overview-hero__eyebrow">AKTUELLES THEMA</MetaLabel>
       <h2 className="overview-hero__title">{theme.title}</h2>
