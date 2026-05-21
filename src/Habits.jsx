@@ -1,60 +1,94 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getHabits,
   removeHabit,
   isCheckedInToday,
   checkInToday,
-  getStreak,
   getLast7Days,
 } from "./habitStorage";
+import { THEMES } from "./themes";
+import ProgressRing from "./components/ProgressRing";
+
+const DAY_LABELS = ['M', 'D', 'M', 'D', 'F', 'S', 'S'];
 
 function HabitCard({ habit, onCheckin, onRemove }) {
+  const t = THEMES[habit.themeIdx ?? 0];
   const checkedToday = isCheckedInToday(habit.id);
-  const streak = getStreak(habit.id);
   const last7 = getLast7Days(habit.id);
 
   return (
-    <div className="card habit-card">
-      <div className="habit-card__header">
-        <span className="habit-card__title">{habit.displayTitle}</span>
-        <button
-          className="habit-card__remove"
-          onClick={() => onRemove(habit.id)}
-          aria-label="Entfernen"
-        >
+    <div className="habit-card-new">
+      <div className="habit-card-new__header">
+        <div>
+          <div className="habit-card-new__theme-row">
+            <div className="habit-card-new__dot" style={{ background: t.color }} />
+            <div className="habit-card-new__theme-label" style={{ color: t.deep }}>
+              Thema 0{t.num}
+            </div>
+          </div>
+          <div className="habit-card-new__title">{habit.displayTitle || habit.title}</div>
+
+        </div>
+        <button className="habit-card-new__remove" onClick={() => onRemove(habit.id)} aria-label="Entfernen">
           ×
         </button>
       </div>
 
-      <div className="habit-dots">
-        {last7.map((day) => (
-          <div
-            key={day.date}
-            className={`habit-dot${day.done ? " habit-dot--done" : ""}`}
-            title={day.date}
-          />
+      <div className="habit-card-new__week">
+        {last7.map((day, k) => (
+          <div key={day.date} className="habit-card-new__day">
+            <div
+              className="habit-card-new__day-cell"
+              style={{
+                background: day.done ? t.color : 'var(--color-bg)',
+                border: day.done ? 'none' : '1px solid var(--color-hair)',
+              }}
+            >
+              {day.done && (
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
+                  <path d="M1 4.5L4.5 8L11 1" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </div>
+            <div className="habit-card-new__day-label">{DAY_LABELS[k]}</div>
+          </div>
         ))}
       </div>
 
-      <div className="habit-card__footer">
-        {streak > 0 && (
-          <span className="habit-streak">🔥 {streak} Tag{streak !== 1 ? "e" : ""} in Folge</span>
+      <button
+        className="habit-card-new__checkin"
+        onClick={() => onCheckin(habit.id)}
+        disabled={checkedToday}
+        style={{
+          background: checkedToday ? 'var(--color-bg)' : t.color,
+          color: checkedToday ? 'var(--color-ink-soft)' : '#fff',
+          border: checkedToday ? '1px solid var(--color-hair)' : 'none',
+          boxShadow: checkedToday ? 'none' : `0 4px 12px -4px ${t.color}90`,
+        }}
+      >
+        {checkedToday ? (
+          <>
+            <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
+              <path d="M1 4.5L4.5 8L11 1" stroke="var(--color-ink-soft)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Heute erledigt
+          </>
+        ) : (
+          'Heute abhaken'
         )}
-        <button
-          className={`button-primary habit-checkin${checkedToday ? " habit-checkin--done" : ""}`}
-          onClick={() => onCheckin(habit.id)}
-          disabled={checkedToday}
-        >
-          {checkedToday ? "Heute erledigt ✓" : "Heute erledigt"}
-        </button>
-      </div>
+      </button>
     </div>
   );
 }
 
 function Habits() {
+  const navigate = useNavigate();
   const [habits, setHabits] = useState(() => getHabits());
   const [, forceUpdate] = useState(0);
+
+  const doneToday = habits.filter((h) => isCheckedInToday(h.id)).length;
+  const activeT = THEMES[habits[0]?.themeIdx ?? 0];
 
   const handleCheckin = (id) => {
     checkInToday(id);
@@ -67,13 +101,56 @@ function Habits() {
   };
 
   return (
-    <div className="page">
-      <h1>Gewohnheiten</h1>
+    <div className="habits-page">
+      <div className="habits-header">
+        <div>
+          <div className="habits-header__eyebrow">Routinen</div>
+          <h1 className="habits-header__title">
+            <span style={{ fontStyle: 'italic' }}>Gewohnheiten</span>
+          </h1>
+        </div>
+        <button className="habits-header__close" onClick={() => navigate('/')}>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M9 1L3 7l6 6" stroke="var(--color-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      {habits.length > 0 && (
+        <div
+          className="habits-summary"
+          style={{ background: `linear-gradient(135deg, ${activeT.color} 0%, ${activeT.deep} 100%)` }}
+        >
+          <div className="habits-summary__ring-decor" />
+          <ProgressRing
+            size={56}
+            stroke={4}
+            progress={habits.length > 0 ? doneToday / habits.length : 0}
+            fillColor="white"
+            trackColor="rgba(255,255,255,0.25)"
+          />
+          <div>
+            <div className="habits-summary__count">
+              {doneToday}{' '}
+              <span style={{ fontStyle: 'italic', opacity: 0.7 }}>von</span>{' '}
+              {habits.length}
+            </div>
+            <div className="habits-summary__label">Routinen heute erledigt</div>
+          </div>
+        </div>
+      )}
+
       {habits.length === 0 ? (
-        <div className="card-soft" style={{ textAlign: "center", padding: "32px 20px" }}>
-          <div style={{ fontSize: "32px", marginBottom: "12px" }}>🌱</div>
-          <p style={{ fontWeight: 600, marginBottom: "8px" }}>Noch keine Gewohnheiten</p>
-          <p style={{ color: "#888" }}>
+        <div className="card-soft card-centered" style={{ margin: '0 20px' }}>
+          <div className="card-centered__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M12 22V12" stroke="var(--color-ink-mute)" strokeWidth="1.8" strokeLinecap="round"/>
+                <path d="M12 12C12 12 8 10 6 6c4 0 6 2 6 6z" stroke="var(--color-ink-mute)" strokeWidth="1.6" strokeLinejoin="round"/>
+                <path d="M12 15C12 15 16 13 18 9c-4 0-6 3-6 6z" stroke="var(--color-ink-mute)" strokeWidth="1.6" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          <p className="card-centered__title">Noch keine Gewohnheiten</p>
+          <p className="card-centered__text">
             Wenn du eine Challenge erledigst, kannst du sie als Gewohnheit hinzufügen.
           </p>
         </div>
@@ -87,6 +164,8 @@ function Habits() {
           />
         ))
       )}
+
+      <div className="page-bottom-spacer" />
     </div>
   );
 }

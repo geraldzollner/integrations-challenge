@@ -1,45 +1,59 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import confetti from "canvas-confetti";
 import { challengesByWeek } from "./challenges";
 import { markChallengeDone, isChallengeDone, getDoneChallenges } from "./doneStorage";
-import {
-  getChallengeCommitment,
-  commitChallenge,
-  clearCommitment,
-  isCommitmentOverdue,
-} from "./commitStorage";
-import { addHabit, isHabit } from "./habitStorage";
+import { commitChallenge, clearCommitment, getChallengeCommitment } from "./commitStorage";
+import { THEMES } from "./themes";
 
 const UNLOCK_THRESHOLD = 7;
 
+function getTimeframeSub(key) {
+  const daysAhead = { today: 0, '3days': 3, week: 7 };
+  const d = new Date();
+  d.setDate(d.getDate() + (daysAhead[key] ?? 0));
+  return d.toLocaleDateString('de-DE', { weekday: 'short' }).replace('.', '');
+}
+
 const TIMEFRAMES = [
-  { key: "today", label: "Heute", days: 0 },
-  { key: "3days", label: "In 3 Tagen", days: 3 },
-  { key: "week", label: "In einer Woche", days: 7 },
+  { key: 'today', label: 'Heute' },
+  { key: '3days', label: 'In 3 Tagen' },
+  { key: 'week', label: 'Diese Woche' },
 ];
 
-function getDeadlineLabel(timeframe) {
-  const tf = TIMEFRAMES.find((t) => t.key === timeframe);
-  if (!tf) return "";
-  const date = new Date();
-  date.setDate(date.getDate() + tf.days);
-  return date.toLocaleDateString("de-DE", { weekday: "long" });
+function computeDeadlineMeta(commitment) {
+  if (!commitment) return null;
+  const start = new Date(commitment.committedAt);
+  const daysMap = { today: 0, '3days': 3, week: 7 };
+  const totalDays = Math.max(1, daysMap[commitment.timeframe] ?? 0);
+  const deadline = new Date(start);
+  deadline.setDate(deadline.getDate() + totalDays);
+  deadline.setHours(23, 59, 59, 999);
+
+  const now = new Date();
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const daysLeft = Math.max(0, Math.ceil((deadline - now) / msPerDay));
+  const elapsed = totalDays - daysLeft;
+  const progress = Math.min(1, Math.max(0, elapsed / totalDays));
+
+  let deadlineLabel;
+  if (daysLeft <= 0) deadlineLabel = 'bis Heute';
+  else if (daysLeft === 1) deadlineLabel = 'bis Morgen';
+  else deadlineLabel = 'bis ' + deadline.toLocaleDateString('de-DE', { weekday: 'long' });
+
+  const startLabel = 'Seit ' + start.toLocaleDateString('de-DE', { weekday: 'short' }).replace('.', '');
+  const endLabel = deadline.toLocaleDateString('de-DE', { weekday: 'short' }).replace('.', '');
+
+  return { deadlineLabel, progress, startLabel, endLabel };
 }
 
 function ChallengeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const allChallenges = challengesByWeek.flatMap((week) => week.challenges);
-  const challenge = allChallenges.find((c) => c.id === id);
-
   const [picking, setPicking] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [showHabitPrompt, setShowHabitPrompt] = useState(false);
-  const [selectedTimeframe, setSelectedTimeframe] = useState("3days");
-  const [commitment, setCommitment] = useState(() =>
-    challenge ? getChallengeCommitment(challenge.id) : null
-  );
+  const [selectedTimeframe, setSelectedTimeframe] = useState('3days');
+
+  const allChallenges = challengesByWeek.flatMap((w) => w.challenges);
+  const challenge = allChallenges.find((c) => c.id === id);
 
   if (!challenge) {
     return (
@@ -49,27 +63,30 @@ function ChallengeDetail() {
     );
   }
 
-  const themeIndex = challengesByWeek.findIndex((w) =>
-    w.challenges.some((c) => c.id === id)
-  );
+  const themeIndex = challengesByWeek.findIndex((w) => w.challenges.some((c) => c.id === id));
+  const theme = challengesByWeek[themeIndex];
+  const t = THEMES[themeIndex];
+  const taskIndex = theme.challenges.findIndex((c) => c.id === id);
+
   if (themeIndex > 0) {
-    const previousTheme = challengesByWeek[themeIndex - 1];
     const doneIds = getDoneChallenges();
-    const previousDone = previousTheme.challenges.filter((c) =>
+    const prevDone = challengesByWeek[themeIndex - 1].challenges.filter((c) =>
       doneIds.includes(c.id)
     ).length;
-    if (previousDone < UNLOCK_THRESHOLD) {
+    if (prevDone < UNLOCK_THRESHOLD) {
       return (
         <div className="page">
-          <button className="button-back" onClick={() => navigate(-1)}>
-            ← Zurück
-          </button>
-          <div className="card-soft" style={{ textAlign: "center", padding: "32px 20px" }}>
-            <div style={{ fontSize: "32px", marginBottom: "12px" }}>🔒</div>
-            <p style={{ fontWeight: 600, marginBottom: "8px" }}>Noch nicht freigeschaltet</p>
-            <p style={{ color: "#888" }}>
-              Erledige {UNLOCK_THRESHOLD} Challenges aus „
-              {previousTheme.title}" um dieses Thema freizuschalten.
+          <button className="button-back" onClick={() => navigate(-1)}>← Zurück</button>
+          <div className="card-soft card-centered">
+            <div className="card-centered__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="11" width="16" height="11" rx="2" stroke="var(--color-ink-mute)" strokeWidth="1.8"/>
+                <path d="M8 11V7a4 4 0 018 0v4" stroke="var(--color-ink-mute)" strokeWidth="1.8" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <p className="card-centered__title">Noch nicht freigeschaltet</p>
+            <p className="card-centered__text">
+              Erledige {UNLOCK_THRESHOLD} Challenges aus „{challengesByWeek[themeIndex - 1].title}" um dieses Thema freizuschalten.
             </p>
           </div>
         </div>
@@ -78,192 +95,195 @@ function ChallengeDetail() {
   }
 
   const done = isChallengeDone(challenge.id);
-  const overdue = isCommitmentOverdue(commitment);
-  const alreadyHabit = isHabit(challenge.id);
+  const commitment = getChallengeCommitment(challenge.id);
+  const deadlineMeta = computeDeadlineMeta(commitment);
 
-  const handleDone = () => {
+  const handleMarkDone = () => {
     markChallengeDone(challenge.id);
     clearCommitment();
-    confetti({
-      particleCount: 120,
-      spread: 70,
-      origin: { y: 0.75 },
-      colors: ["#f14e4e", "#4caf50", "#ffd700", "#42a5f5", "#ff9800"],
-    });
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-      if (!alreadyHabit) {
-        setShowHabitPrompt(true);
-      } else {
-        navigate("/");
-      }
-    }, 2500);
+    navigate('/done', { state: { challengeId: challenge.id, themeIndex, taskIndex } });
   };
 
-  const handleHabitYes = () => {
-    addHabit(challenge);
-    navigate("/habits");
-  };
-
-  const handleHabitNo = () => {
-    navigate("/");
-  };
-
-  const handleCommit = () => {
+  const handleAccept = () => {
     commitChallenge(challenge.id, selectedTimeframe);
-    setCommitment(getChallengeCommitment(challenge.id));
-    setPicking(false);
+    navigate(-1);
   };
 
-  if (showHabitPrompt) {
-    return (
-      <div className="page">
-        <div className="habit-prompt">
-          <div className="habit-prompt__emoji">🔄</div>
-          <h2 className="habit-prompt__title">Zur Gewohnheit machen?</h2>
-          <p className="habit-prompt__body">
-            Möchtest du <strong>„{challenge.title}"</strong> regelmäßig wiederholen
-            und als Gewohnheit tracken?
-          </p>
-          <button className="button-primary" onClick={handleHabitYes}>
-            Ja, zur Gewohnheit machen!
-          </button>
-          <button
-            className="button-primary button-primary--ghost"
-            onClick={handleHabitNo}
-            style={{ marginTop: "10px" }}
-          >
-            Nein danke
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const handleAlreadyDone = () => {
+    markChallengeDone(challenge.id);
+    clearCommitment();
+    navigate(-1);
+  };
+
+  const handlePause = () => {
+    clearCommitment();
+    navigate(-1);
+  };
 
   return (
-    <div className="page">
-      <button className="button-back" onClick={() => navigate(-1)}>
-        ← Zurück
-      </button>
-      <div className="card-soft">
-        <h2>{challenge.displayTitle}</h2>
-      </div>
-      <div className="card">
-        <p>{challenge.description}</p>
-      </div>
-      {challenge.guidance && (
-        <div className="card-soft">
-          <h3>Tipp</h3>
-          <p>{challenge.guidance}</p>
-        </div>
-      )}
-      {challenge.example && (
-        <div className="card-soft">
-          <h3>Beispiel</h3>
-          <p className="example-phrase">{challenge.example}</p>
-        </div>
-      )}
-
-      {/* DONE */}
-      {done && (
-        <button className="button-primary" disabled>
-          Erledigt ✓
+    <div className="detail-page">
+      <div className="detail-topbar">
+        <button className="detail-back" onClick={() => navigate(-1)}>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M9 1L3 7l6 6" stroke="var(--color-ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </button>
-      )}
+        <div className="detail-pill" style={{ background: t.soft, color: t.deep }}>
+          <div
+            className={`detail-pill__dot${commitment ? ' bp-pulse-dot' : ''}`}
+            style={{ background: t.color }}
+          />
+          Thema 0{t.num} · Aufgabe {taskIndex + 1}
+        </div>
+        <div className="detail-topbar__spacer" />
+      </div>
 
-      {/* COMMITTED – overdue */}
-      {!done && commitment && overdue && (
-        <>
-          <div className="committed-badge committed-badge--overdue">
-            <span className="committed-badge__icon">⚠️</span>
-            <span className="committed-badge__text">
-              Frist abgelaufen – trotzdem erledigt?
-            </span>
-          </div>
-          <button className="button-primary" onClick={handleDone}>
-            Als erledigt markieren
-          </button>
-          <button
-            className="button-primary button-primary--ghost"
-            onClick={() => { clearCommitment(); setPicking(true); }}
+      <div className="detail-body">
+        <h1 className="detail-body__title">{challenge.displayTitle}</h1>
+        <p className="detail-body__text">{challenge.description}</p>
+        {challenge.example && (
+          <p className="detail-body__example">{challenge.example}</p>
+        )}
+      </div>
+
+      {/* Active status banner — replaces old "Ich mache das" card */}
+      {!done && commitment && deadlineMeta && (
+        <div className="detail-status-banner">
+          <div
+            className="detail-status-banner__card"
+            style={{ background: t.soft, border: `1px solid ${t.color}30` }}
           >
-            Neu committen
-          </button>
-        </>
-      )}
-
-      {/* COMMITTED – on track */}
-      {!done && commitment && !overdue && (
-        <>
-          <div className="committed-badge">
-            <span className="committed-badge__icon">🎯</span>
-            <span className="committed-badge__text">
-              {commitment.timeframe === "today"
-                ? "Ich mache das – heute!"
-                : `Ich mache das – bis ${getDeadlineLabel(commitment.timeframe)}!`}
-            </span>
-          </div>
-          <button className="button-primary" onClick={handleDone}>
-            Als erledigt markieren
-          </button>
-        </>
-      )}
-
-      {/* DEFAULT / PICKING */}
-      {!done && !commitment && (
-        <>
-          {!picking ? (
-            <>
-              <button
-                className="button-primary"
-                onClick={() => setPicking(true)}
-              >
-                Ich mache diese Challenge! 🎯
-              </button>
-              <button
-                className="button-primary"
-                disabled
-                style={{ marginTop: "8px" }}
-              >
-                Als erledigt markieren
-              </button>
-            </>
-          ) : (
-            <div className="card" style={{ marginTop: "12px", marginBottom: 0 }}>
-              <p style={{ fontWeight: 600, marginBottom: "12px" }}>
-                Bis wann möchtest du die Challenge erledigen?
-              </p>
-              <div className="timeframe-options">
-                {TIMEFRAMES.map((tf) => (
-                  <button
-                    key={tf.key}
-                    className={`timeframe-chip${
-                      selectedTimeframe === tf.key
-                        ? " timeframe-chip--selected"
-                        : ""
-                    }`}
-                    onClick={() => setSelectedTimeframe(tf.key)}
-                  >
-                    {tf.label}
-                  </button>
-                ))}
+            <div className="detail-status-banner__row1">
+              <div className="detail-status-banner__left">
+                <span
+                  className="bp-pulse-dot detail-status-banner__dot"
+                  style={{ background: t.color, boxShadow: `0 0 0 4px ${t.color}26` }}
+                />
+                <span className="detail-status-banner__label" style={{ color: t.deep }}>
+                  Du machst das
+                </span>
               </div>
-              <button
-                className="button-primary"
-                onClick={handleCommit}
-                style={{ marginTop: "16px" }}
-              >
-                Akzeptieren
-              </button>
+              <span className="detail-status-banner__deadline" style={{ color: t.deep }}>
+                {deadlineMeta.deadlineLabel}
+              </span>
             </div>
-          )}
-        </>
+            <div className="detail-status-banner__bar-track" style={{ background: `${t.color}26` }}>
+              <div
+                className="detail-status-banner__bar-fill bp-bar-anim"
+                style={{
+                  width: `${deadlineMeta.progress * 100}%`,
+                  background: t.color,
+                  '--bp-bar-delay': '200ms',
+                }}
+              />
+            </div>
+            <div className="detail-status-banner__dates" style={{ color: t.deep }}>
+              <span>{deadlineMeta.startLabel}</span>
+              <span>{deadlineMeta.endLabel}</span>
+            </div>
+          </div>
+        </div>
       )}
 
-      {showToast && (
-        <div className="success-toast">🎉 Super! Weiter so!</div>
+      {challenge.guidance && (
+        <div className="detail-tip">
+          <div className="detail-tip__rule" style={{ background: t.color }} />
+          <div>
+            <div className="detail-tip__label" style={{ color: t.deep }}>Tipp</div>
+            <p className="detail-tip__text">{challenge.guidance}</p>
+          </div>
+        </div>
       )}
+
+      {/* Timeframe picker — only shown in open (no commitment) state */}
+      {!done && !commitment && picking && (
+        <div className="detail-timeframe">
+          <div className="detail-timeframe__label">Bis wann?</div>
+          <div className="detail-timeframe__options">
+            {TIMEFRAMES.map((tf) => {
+              const sel = selectedTimeframe === tf.key;
+              return (
+                <button
+                  key={tf.key}
+                  className="detail-timeframe__btn"
+                  onClick={() => setSelectedTimeframe(tf.key)}
+                  style={{
+                    background: sel ? t.color : 'var(--color-bg)',
+                    color: sel ? '#fff' : 'var(--color-ink)',
+                    borderColor: sel ? t.color : 'var(--color-hair)',
+                    boxShadow: sel ? `0 4px 12px -4px ${t.color}80` : 'none',
+                  }}
+                >
+                  <span className="detail-timeframe__main">{tf.label}</span>
+                  <span className="detail-timeframe__sub">{getTimeframeSub(tf.key)}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div className="detail-cta">
+        {done ? (
+          <button
+            className="detail-cta__primary"
+            disabled
+            style={{ background: 'var(--color-disabled-bg)', color: 'var(--color-muted)' }}
+          >
+            Erledigt ✓
+          </button>
+        ) : commitment ? (
+          <>
+            <button
+              className="detail-cta__primary"
+              onClick={handleMarkDone}
+              style={{
+                background: t.color,
+                boxShadow: `0 10px 26px -8px ${t.color}`,
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+              }}
+            >
+              <svg width="16" height="14" viewBox="0 0 18 14" fill="none">
+                <path d="M1 7L6.5 12.5L17 1.5" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Als erledigt markieren
+            </button>
+            <button className="detail-cta__secondary" onClick={handlePause}>
+              Aufgabe pausieren
+            </button>
+          </>
+        ) : picking ? (
+          <>
+            <button
+              className="detail-cta__primary"
+              onClick={handleAccept}
+              style={{ background: t.color, boxShadow: `0 8px 22px -6px ${t.color}90` }}
+            >
+              Bestätigen
+            </button>
+            <button className="detail-cta__secondary" onClick={() => setPicking(false)}>
+              Abbrechen
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="detail-cta__primary"
+              onClick={() => setPicking(true)}
+              style={{ background: t.color, boxShadow: `0 8px 22px -6px ${t.color}90` }}
+            >
+              Annehmen
+            </button>
+            <button className="detail-cta__secondary" onClick={handleAlreadyDone}>
+              Bereits erledigt
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

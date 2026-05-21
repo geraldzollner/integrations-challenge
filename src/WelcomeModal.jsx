@@ -1,75 +1,64 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Wordmark from "./components/Wordmark";
 
 const STORAGE_KEY = "onboarding_seen";
 
-const PAGES = [
-  {
-    emoji: "🌍",
-    title: "Willkommen zur Integrations-Challenge!",
-    body: (
-      <>
-        <p className="modal-body">
-          Diese App begleitet dich dabei, im DACH-Raum Fuß zu fassen – mit
-          konkreten Alltagsaufgaben, die dir helfen, neue Kontakte zu knüpfen
-          und am gesellschaftlichen Leben teilzuhaben.
-        </p>
-        <p className="modal-body modal-body--spaced">
-          Du findest Challenges zu verschiedenen Themen. Klicke eine Challenge
-          an, lies den Tipp – und hak sie ab, sobald du sie erledigt hast. So
-          einfach ist das. 😊
-        </p>
-      </>
-    ),
-    button: "Weiter →",
-  },
-  {
-    emoji: "💪",
-    title: "Ein Hinweis vorab",
-    body: (
-      <p className="modal-body">
-        Ein gewisses Maß an Unsicherheit und Nervosität gehört dazu – das ist
-        normal und kein Zeichen, dass etwas falsch läuft. Es bedeutet nur, dass
-        du dich wirklich auf das Leben einlässt.
-      </p>
-    ),
-    button: "Los geht's →",
-  },
-];
-
 function WelcomeModal() {
-  const [page, setPage] = useState(0);
-  const [visible, setVisible] = useState(
-    () => !localStorage.getItem(STORAGE_KEY)
-  );
+  const [visible, setVisible] = useState(() => !localStorage.getItem(STORAGE_KEY));
+  const navigate = useNavigate();
 
   if (!visible) return null;
 
-  const current = PAGES[page];
-  const isLast = page === PAGES.length - 1;
-
-  function handleNext() {
-    if (isLast) {
-      localStorage.setItem(STORAGE_KEY, "true");
-      setVisible(false);
-    } else {
-      setPage(page + 1);
-    }
+  function handleStart() {
+    localStorage.setItem(STORAGE_KEY, "true");
+    setVisible(false);
+    navigate("/");
   }
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-card">
-        <div className="modal-dots">
-          {PAGES.map((_, i) => (
-            <div key={i} className={`modal-dot${i === page ? " modal-dot--active" : ""}`} />
-          ))}
-        </div>
-        <div className="modal-emoji">{current.emoji}</div>
-        <h2 className="modal-title">{current.title}</h2>
-        {current.body}
-        <button className="button-primary" onClick={handleNext}>
-          {current.button}
-        </button>
+    <div className="welcome-screen">
+      <Wordmark size={22} className="welcome__wordmark" />
+
+      <div className="welcome__hero bp-rise">
+        <svg width="160" height="160" viewBox="0 0 180 180" aria-hidden>
+          <defs>
+            <radialGradient id="bp-glow-w" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="var(--color-brand-sky)" stopOpacity="0.28" />
+              <stop offset="60%" stopColor="var(--color-brand-sky)" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="90" cy="90" r="82" fill="url(#bp-glow-w)" />
+          <circle cx="90" cy="90" r="76" stroke="var(--theme-3-color)" strokeWidth="2.5" fill="none"
+            strokeDasharray="430 1000" strokeLinecap="round" transform="rotate(-95 90 90)" />
+          <circle cx="90" cy="90" r="60" stroke="var(--theme-2-color)" strokeWidth="2.5" fill="none"
+            strokeDasharray="320 1000" strokeLinecap="round" transform="rotate(-65 90 90)" />
+          <circle cx="90" cy="90" r="44" stroke="var(--theme-1-color)" strokeWidth="2.5" fill="none"
+            strokeDasharray="225 1000" strokeLinecap="round" transform="rotate(-30 90 90)" />
+          <circle cx="90" cy="90" r="28" fill="var(--color-brand-navy)" />
+          <circle cx="90" cy="90" r="10" fill="#fff" opacity="0.92" />
+        </svg>
+      </div>
+
+      <h1 className="welcome__headline bp-rise" style={{ animationDelay: '120ms' }}>
+        Ankommen,<br />
+        <span style={{ fontStyle: 'italic', color: 'var(--color-brand-blue)' }}>Schritt für Schritt.</span>
+      </h1>
+      <p className="welcome__subhead bp-rise" style={{ animationDelay: '220ms' }}>
+        Vom ersten Hallo bis zur echten Freundschaft.<br />
+        In kleinen, machbaren Schritten.
+      </p>
+
+      <div className="welcome__spacer" />
+
+      <div className="bp-rise" style={{ animationDelay: '320ms' }}>
+        <p className="welcome__reassurance">
+          Nervös sein{' '}
+          <span style={{ color: 'var(--color-brand-blue)' }}>ist normal</span>
+          {' '}— es bedeutet nur,<br />
+          dass du dich wirklich auf das Leben einlässt.
+        </p>
+        <button className="welcome__btn-primary" onClick={handleStart}>Loslegen</button>
       </div>
     </div>
   );

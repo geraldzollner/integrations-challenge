@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Talkin' Deutsch · App identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #FFFFFF; }
+  #root { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="directions/B-plus-tokens.jsx"></script>
+<script type="text/babel" src="directions/B-plus-screens.jsx"></script>
+<script type="text/babel" src="directions/B-plus-app.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+const W = 390, H = 760;
+
+function Phone({ children, dark = false }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: W + 24, height: H + 24, background: 'transparent' }}>
+      <IOSDevice width={W} height={H} dark={dark}>
+        {children}
+      </IOSDevice>
+    </div>
+  );
+}
+
+// Intro / framing artboard — explains what changed since v-prev
+function Intro() {
+  const Row = ({ k, v }) => (
+    <div style={{ display: 'flex', gap: 16, padding: '12px 0', borderBottom: '1px solid rgba(3,4,94,0.10)' }}>
+      <div style={{
+        width: 132, fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+        fontSize: 10, color: '#5A6480', letterSpacing: '0.14em',
+        textTransform: 'uppercase', fontWeight: 500, flexShrink: 0, paddingTop: 2,
+      }}>{k}</div>
+      <div style={{ flex: 1, fontSize: 14, color: '#0A0E5C', lineHeight: 1.55 }}>{v}</div>
+    </div>
+  );
+  const Swatch = ({ c, name, code }) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div style={{ width: '100%', height: 56, borderRadius: 6, background: c, border: '0.5px solid rgba(3,4,94,0.10)' }}/>
+      <div style={{ fontSize: 11, color: '#0A0E5C', fontWeight: 500 }}>{name}</div>
+      <div style={{
+        fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+        fontSize: 9.5, color: '#5A6480', letterSpacing: '0.06em',
+      }}>{code}</div>
+    </div>
+  );
+  return (
+    <div style={{
+      width: 620, padding: '40px 36px', color: '#0A0E5C',
+      fontFamily: 'Inter, system-ui, sans-serif',
+      background: '#FFFFFF',
+    }}>
+      <div style={{
+        fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+        fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase',
+        color: '#5A6480', display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 18,
+      }}>
+        <span style={{ width: 22, height: 1, background: 'currentColor', opacity: 0.5 }}/>
+        Identity update · monochrome blue
+      </div>
+
+      <h1 style={{
+        fontFamily: '"Instrument Serif", serif',
+        fontWeight: 400,
+        fontSize: 52, lineHeight: 1.0, margin: '0 0 18px',
+        letterSpacing: '-0.01em', color: '#000',
+      }}>
+        Talkin&rsquo;<span style={{ fontStyle: 'italic', color: '#0077B6' }}> Deutsch</span><br/>
+        — one palette, one voice.
+      </h1>
+
+      <p style={{ fontSize: 15, lineHeight: 1.6, color: '#0A0E5C', margin: '0 0 24px', maxWidth: '54ch' }}>
+        Black, white, four shades of <em style={{ fontFamily: '"Instrument Serif", serif', color: '#0077B6' }}>blue</em>.
+        Each theme is a deeper step of the same hue, so the visual progression —
+        from sky to navy — mirrors the emotional arc of the journey:
+        from first hello to deep connection.
+      </p>
+
+      <div style={{ marginTop: 8 }}>
+        <Row k="Type" v={
+          <span><em style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic' }}>Instrument Serif</em> for display, Inter for UI, JetBrains Mono for metadata. Same pairing as the site.</span>
+        }/>
+        <Row k="Theme scale" v={
+          <span>Four steps from sky to navy. Add or remove themes — just extend the scale.</span>
+        }/>
+        <Row k="Wordmark" v={
+          <span>&ldquo;Talkin&rsquo; <em style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic' }}>Deutsch</em>&rdquo; with a small blue dot — mirrors the website nav lockup.</span>
+        }/>
+        <Row k="Primary CTAs" v="Deep navy (#03045E) carries the action. Theme-coloured CTAs use the current step."/>
+        <Row k="What stayed" v="Every screen, every animation, the prototype flow, the tab bar — untouched."/>
+      </div>
+
+      <div style={{ marginTop: 28, display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10 }}>
+        <Swatch c="#000000" name="Ink" code="000000"/>
+        <Swatch c="#03045E" name="Navy" code="03045E"/>
+        <Swatch c="#023E8A" name="Deep" code="023E8A"/>
+        <Swatch c="#0077B6" name="Brand" code="0077B6"/>
+        <Swatch c="#0096C7" name="Sky" code="0096C7"/>
+        <Swatch c="#FFFFFF" name="Paper" code="FFFFFF"/>
+      </div>
+
+      <div style={{
+        marginTop: 28, padding: '14px 16px',
+        background: '#EEF1FA', border: '0.5px solid rgba(3,4,94,0.14)', borderRadius: 8,
+        fontSize: 12, color: '#0A0E5C', display: 'flex', alignItems: 'center', gap: 10,
+      }}>
+        <span style={{ fontSize: 14 }}>↓</span>
+        <span><strong>Tap the prototype on the right</strong> to step through the flow. The other artboards show each screen at rest.</span>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection id="intro" title="The brief" subtitle="What changed since the B+ draft.">
+        <DCArtboard id="intro" label="Identity update →" width={620} height={680}>
+          <Intro/>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="Bplus" title="Talkin' Deutsch · monochrome blue" subtitle="Four steps of one hue, from sky to navy. Tap the prototype on the left ↓.">
+        <DCArtboard id="bp-prototype" label="▶ Interactive prototype · tap through" width={W+24} height={H+24}><Phone><BpPrototype/></Phone></DCArtboard>
+        <DCArtboard id="bp-welcome"    label="Welcome"  width={W+24} height={H+24}><Phone><BpWelcome/></Phone></DCArtboard>
+        <DCArtboard id="bp-overview-1" label="Overview · sky (T01)" width={W+24} height={H+24}><Phone><BpOverview themeIdx={0} data={BP_INITIAL_DATA}/></Phone></DCArtboard>
+        <DCArtboard id="bp-overview-2" label="Overview · primary (T02)" width={W+24} height={H+24}><Phone><BpOverview themeIdx={1} data={{...BP_INITIAL_DATA, themes: BP_INITIAL_DATA.themes.map((t,i)=>({...t, locked: i>2, done: i===0?10:i===1?6:i===2?2:0}))}}/></Phone></DCArtboard>
+        <DCArtboard id="bp-overview-4" label="Overview · navy (T04)" width={W+24} height={H+24}><Phone><BpOverview themeIdx={3} data={{...BP_INITIAL_DATA, themes: BP_INITIAL_DATA.themes.map((t,i)=>({...t, locked: false, done: i===0?10:i===1?8:i===2?5:2}))}}/></Phone></DCArtboard>
+        <DCArtboard id="bp-detail"     label="Detail" width={W+24} height={H+24}><Phone><BpDetail themeIdx={0} taskIdx={2} data={BP_INITIAL_DATA}/></Phone></DCArtboard>
+        <DCArtboard id="bp-habits"     label="Habits"   width={W+24} height={H+24}><Phone><BpHabits themeIdx={0} data={BP_INITIAL_DATA}/></Phone></DCArtboard>
+        <DCArtboard id="bp-done"       label="Done · celebration" width={W+24} height={H+24}><Phone><BpDone themeIdx={0} taskIdx={2} data={BP_INITIAL_DATA}/></Phone></DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
