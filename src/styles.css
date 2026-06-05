@@ -1384,7 +1384,13 @@ p {
   letter-spacing: -0.4px;
 }
 
-.detail-cta { padding: 16px 28px 0; }
+.detail-cta {
+  position: sticky;
+  bottom: calc(74px + env(safe-area-inset-bottom, 0px));
+  padding: 16px 28px 16px;
+  background: var(--color-surface);
+  z-index: 10;
+}
 
 .detail-cta__primary {
   width: 100%;
