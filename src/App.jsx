@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink, useLocation } from "react-router-dom";
+import { Routes, Route, NavLink, Navigate, useLocation } from "react-router-dom";
 import ChallengeOverview from "./ChallengeOverview";
 import ThemeDetail from "./ThemeDetail";
 import ChallengeDetail from "./ChallengeDetail";
@@ -54,6 +54,7 @@ function App() {
         <Route path="/challenge/:id" element={<ChallengeDetail />} />
         <Route path="/done" element={<Done />} />
         <Route path="/habits" element={<Habits />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       {!hideTabs && <TabBar />}
     </>
