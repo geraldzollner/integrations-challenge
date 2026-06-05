@@ -1219,7 +1219,6 @@ p {
   width: 100%;
   max-width: var(--page-width);
   background: var(--color-surface);
-  min-height: 100dvh;
   padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
 }
 
