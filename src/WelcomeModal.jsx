@@ -59,6 +59,14 @@ function WelcomeModal() {
           dass du dich wirklich auf das Leben einlässt.
         </p>
         <button className="welcome__btn-primary" onClick={handleStart}>Loslegen</button>
+
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 14 }}>
+          <span style={{ width: 14, height: 1, background: 'var(--color-hair)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--color-ink-mute)', fontSize: 9.5, letterSpacing: '0.16em' }}>
+            by Gerald Zollner
+          </span>
+          <span style={{ width: 14, height: 1, background: 'var(--color-hair)' }} />
+        </div>
       </div>
     </div>
   );

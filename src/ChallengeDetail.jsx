@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import posthog from "posthog-js";
 import { challengesByWeek } from "./challenges";
 import { markChallengeDone, isChallengeDone, getDoneChallenges } from "./doneStorage";
 import { commitChallenge, clearCommitment, getChallengeCommitment } from "./commitStorage";
@@ -98,24 +99,37 @@ function ChallengeDetail() {
   const commitment = getChallengeCommitment(challenge.id);
   const deadlineMeta = computeDeadlineMeta(commitment);
 
+  useEffect(() => {
+    posthog.capture("challenge_viewed", {
+      challenge_id: challenge.id,
+      challenge_title: challenge.title,
+      week: theme.title,
+      theme_index: themeIndex,
+    });
+  }, [challenge.id]);
+
   const handleMarkDone = () => {
+    posthog.capture("challenge_completed", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title });
     markChallengeDone(challenge.id);
     clearCommitment();
     navigate('/done', { state: { challengeId: challenge.id, themeIndex, taskIndex } });
   };
 
   const handleAccept = () => {
+    posthog.capture("challenge_accepted", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title, timeframe: selectedTimeframe });
     commitChallenge(challenge.id, selectedTimeframe);
     navigate(-1);
   };
 
   const handleAlreadyDone = () => {
+    posthog.capture("challenge_completed", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title, via: "already_done" });
     markChallengeDone(challenge.id);
     clearCommitment();
     navigate(-1);
   };
 
   const handlePause = () => {
+    posthog.capture("challenge_paused", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title });
     clearCommitment();
     navigate(-1);
   };
