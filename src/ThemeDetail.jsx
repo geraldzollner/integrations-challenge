@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import posthog from "posthog-js";
 import { challengesByWeek } from "./challenges";
 import { getDoneChallenges } from "./doneStorage";
 import { getActiveCommitment } from "./commitStorage";
 import { THEMES } from "./themes";
+import { recordThemeOpened, getDaysSinceFirstSeen } from "./analyticsStorage";
 
 const UNLOCK_THRESHOLD = 7;
 
@@ -25,14 +28,29 @@ function ThemeDetail() {
   const idx = parseInt(themeIndex, 10);
   const week = challengesByWeek[idx];
   const t = THEMES[idx];
+  const doneIds = getDoneChallenges();
+  const activeCommitment = getActiveCommitment();
+
+  useEffect(() => {
+    if (!week || !t) return;
+    if (idx > 0) {
+      const prevDone = challengesByWeek[idx - 1].challenges.filter((c) => doneIds.includes(c.id)).length;
+      if (prevDone < UNLOCK_THRESHOLD) return;
+    }
+    const done = week.challenges.filter((c) => doneIds.includes(c.id)).length;
+    posthog.capture("theme_opened", {
+      theme_number: t.num,
+      theme_name: week.title,
+      challenges_done: done,
+      is_first_open: recordThemeOpened(idx),
+      days_since_first_seen: getDaysSinceFirstSeen(),
+    });
+  }, [idx]);
 
   if (!week || !t) {
     navigate("/");
     return null;
   }
-
-  const doneIds = getDoneChallenges();
-  const activeCommitment = getActiveCommitment();
 
   if (idx > 0) {
     const prevDone = challengesByWeek[idx - 1].challenges.filter((c) =>

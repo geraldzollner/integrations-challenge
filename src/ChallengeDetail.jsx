@@ -5,6 +5,7 @@ import { challengesByWeek } from "./challenges";
 import { markChallengeDone, isChallengeDone, getDoneChallenges } from "./doneStorage";
 import { commitChallenge, clearCommitment, getChallengeCommitment } from "./commitStorage";
 import { THEMES } from "./themes";
+import { getDaysSinceFirstSeen, stampCompletion } from "./analyticsStorage";
 
 const UNLOCK_THRESHOLD = 7;
 
@@ -47,6 +48,42 @@ function computeDeadlineMeta(commitment) {
   return { deadlineLabel, progress, startLabel, endLabel };
 }
 
+function captureCompletion({ challenge, taskIndex, themeIndex, theme, t, globalChallengeNumber, extra = {} }) {
+  const currentDoneIds = getDoneChallenges();
+  const isFirstCompletion = currentDoneIds.length === 0;
+  const totalBefore = currentDoneIds.length;
+  const hoursSinceLast = stampCompletion();
+
+  markChallengeDone(challenge.id);
+  clearCommitment();
+
+  const newDoneIds = getDoneChallenges();
+  const themesTouched = challengesByWeek.filter((w) =>
+    w.challenges.some((c) => newDoneIds.includes(c.id))
+  ).length;
+
+  posthog.capture("challenge_completed", {
+    challenge_id: challenge.id,
+    challenge_title: challenge.title,
+    challenge_number: taskIndex + 1,
+    theme_number: t.num,
+    theme_name: theme.title,
+    global_challenge_number: globalChallengeNumber,
+    is_first_completion: isFirstCompletion,
+    total_completed_after: totalBefore + 1,
+    hours_since_last_completion: hoursSinceLast,
+    themes_touched: themesTouched,
+    days_since_first_seen: getDaysSinceFirstSeen(),
+    ...extra,
+  });
+
+  posthog.setPersonProperties({
+    total_challenges_completed: totalBefore + 1,
+    themes_touched: themesTouched,
+    last_challenge_completed_at: new Date().toISOString(),
+  });
+}
+
 function ChallengeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -68,6 +105,8 @@ function ChallengeDetail() {
   const theme = challengesByWeek[themeIndex];
   const t = THEMES[themeIndex];
   const taskIndex = theme.challenges.findIndex((c) => c.id === id);
+  const globalChallengeNumber =
+    challengesByWeek.slice(0, themeIndex).reduce((sum, w) => sum + w.challenges.length, 0) + taskIndex + 1;
 
   if (themeIndex > 0) {
     const doneIds = getDoneChallenges();
@@ -103,33 +142,48 @@ function ChallengeDetail() {
     posthog.capture("challenge_viewed", {
       challenge_id: challenge.id,
       challenge_title: challenge.title,
-      week: theme.title,
-      theme_index: themeIndex,
+      challenge_number: taskIndex + 1,
+      theme_number: t.num,
+      theme_name: theme.title,
+      global_challenge_number: globalChallengeNumber,
+      days_since_first_seen: getDaysSinceFirstSeen(),
     });
   }, [challenge.id]);
 
   const handleMarkDone = () => {
-    posthog.capture("challenge_completed", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title });
-    markChallengeDone(challenge.id);
-    clearCommitment();
+    captureCompletion({ challenge, taskIndex, themeIndex, theme, t, globalChallengeNumber });
     navigate('/done', { state: { challengeId: challenge.id, themeIndex, taskIndex } });
   };
 
   const handleAccept = () => {
-    posthog.capture("challenge_accepted", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title, timeframe: selectedTimeframe });
+    posthog.capture("challenge_accepted", {
+      challenge_id: challenge.id,
+      challenge_title: challenge.title,
+      challenge_number: taskIndex + 1,
+      theme_number: t.num,
+      theme_name: theme.title,
+      global_challenge_number: globalChallengeNumber,
+      timeframe: selectedTimeframe,
+      days_since_first_seen: getDaysSinceFirstSeen(),
+    });
     commitChallenge(challenge.id, selectedTimeframe);
     navigate(-1);
   };
 
   const handleAlreadyDone = () => {
-    posthog.capture("challenge_completed", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title, via: "already_done" });
-    markChallengeDone(challenge.id);
-    clearCommitment();
+    captureCompletion({ challenge, taskIndex, themeIndex, theme, t, globalChallengeNumber, extra: { via: "already_done" } });
     navigate(-1);
   };
 
   const handlePause = () => {
-    posthog.capture("challenge_paused", { challenge_id: challenge.id, challenge_title: challenge.title, week: theme.title });
+    posthog.capture("challenge_paused", {
+      challenge_id: challenge.id,
+      challenge_title: challenge.title,
+      challenge_number: taskIndex + 1,
+      theme_number: t.num,
+      theme_name: theme.title,
+      days_since_first_seen: getDaysSinceFirstSeen(),
+    });
     clearCommitment();
     navigate(-1);
   };
@@ -160,7 +214,6 @@ function ChallengeDetail() {
         )}
       </div>
 
-      {/* Active status banner — replaces old "Ich mache das" card */}
       {!done && commitment && deadlineMeta && (
         <div className="detail-status-banner">
           <div
@@ -209,7 +262,6 @@ function ChallengeDetail() {
         </div>
       )}
 
-      {/* Timeframe picker — only shown in open (no commitment) state */}
       {!done && !commitment && picking && (
         <div className="detail-timeframe">
           <div className="detail-timeframe__label">Bis wann?</div>
