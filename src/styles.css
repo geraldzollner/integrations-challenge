@@ -735,6 +735,7 @@ p {
   -webkit-backdrop-filter: blur(16px);
   border-top: var(--hairline);
   z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .tab-bar__item {
@@ -1219,7 +1220,7 @@ p {
   max-width: var(--page-width);
   background: var(--color-surface);
   min-height: 100dvh;
-  padding-bottom: 80px;
+  padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
 }
 
 .detail-topbar {
@@ -1771,7 +1772,7 @@ p {
 .habit-card-new__checkin:disabled { cursor: default; }
 
 /* shared spacer */
-.page-bottom-spacer { height: 40px; }
+.page-bottom-spacer { height: calc(120px + env(safe-area-inset-bottom, 0px)); }
 
 /* ─── THEME DETAIL PAGE ──────────────────────────────────────── */
 .theme-detail-page {
